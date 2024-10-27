@@ -95,7 +95,7 @@ body {
     display: flex;
     align-items: center;
     color: #050505;
-    margin-left: 15px;
+    margin-left: 5px;
   }
   
   /* Responsive styling */
@@ -309,13 +309,11 @@ body {
   
   /*marketplace*/
   /* General Styling */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-}
+
 
 .shop_section {
   padding: 40px 0;
+  height: 500px;
 }
 
 .heading_container h2 {
@@ -371,6 +369,7 @@ body {
 .detail-box h6 span {
   color: #ff4d4d;
   font-weight: bold;
+  text-decoration: none;
 }
 
 /* New Label */
@@ -378,7 +377,7 @@ body {
   position: absolute;
   top: 15px;
   left: 15px;
-  background-color: #ff4d4d;
+  background-color: #eff701;
   color: #fff;
   font-size: 0.9rem;
   padding: 5px 10px;
@@ -389,18 +388,17 @@ body {
 /* Button Styling */
 .btn-box {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .btn-box a {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #28a745;
-  color: #fff;
+  background-color: white;
+  color: #254731;
+  padding: 12px 25px;
+  border: 2px solid #254731;
   border-radius: 5px;
+  cursor: pointer;
   text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s;
 }
 
 .btn-box a:hover {
