@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in & Registration</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+    
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: url("images/farmer.jpg") no-repeat center center fixed;
+        background-size: cover; /* Ensures the image covers the entire viewport */
+    }
+    
+    .wrapper {
+        width: 100%;
+        max-width: 500px;
+        background-color: rgba(219, 245, 216, 0.9); /* Slight transparency for readability */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .nav-logo p {
+        font-size: 24px;
+        font-weight: bold;
+        color: #4CAF50;
+        text-align: center;
+    }
+    
+    .form-box {
+        padding: 20px;
+    }
+    
+    .User-container {
+        text-align: center;
+    }
+    
+    .login-container header {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    
+    .input-box {
+        margin: 15px 0;
+    }
+    
+    .submit {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .submit:hover {
+        background: #388E3C;
+    }
+    
+</style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>MAZAO HUB</p>
+            </div>
+        </nav>
+
+        <!-- Form box -->
+        <div class="form-box">
+            <!-- USER TYPE form -->
+            <div class="User-container" id="user">
+                <div class="top">
+                    <header>PLEASE SELECT THE TYPE OF USER</header>
+                </div>
+
+                <div class="input-box">
+                    <a href="SignUpAsFarmer.html">
+                        <input type="button" class="submit" value="FARMER">
+                    </a>
+                </div>
+
+                <div class="input-box">
+                    <a href="SignUpAsBuyer.html">
+                        <input type="button" class="submit" value="BUYER">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
