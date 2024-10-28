@@ -19,8 +19,9 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background: url("images/farmer.jpg") no-repeat center center fixed;
-        background-size: cover; /* Ensures the image covers the entire viewport */
+        background:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.5)) ,url(../Assets/farmerbg2.jpg) no-repeat center center fixed;
+        background-size:cover; /* Ensures the image covers the entire viewport */
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
     }
     
     .wrapper {
@@ -33,9 +34,9 @@
     }
     
     .nav-logo p {
-        font-size: 24px;
+        font-size: 30px;
         font-weight: bold;
-        color: #4CAF50;
+        color:#000000;
         text-align: center;
     }
     
@@ -45,6 +46,8 @@
     
     .User-container {
         text-align: center;
+        font-family:'Times New Roman', Times, serif;
+        font-weight: 30px;
     }
     
     .login-container header {
@@ -64,7 +67,7 @@
         font-size: 16px;
         font-weight: bold;
         color: #fff;
-        background: #4CAF50;
+        background: #254731;
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -82,7 +85,7 @@
     <div class="wrapper">
         <nav class="nav">
             <div class="nav-logo">
-                <p>MAZAO HUB</p>
+                <p>MazaoHub</p>
             </div>
         </nav>
 
@@ -95,13 +98,13 @@
                 </div>
 
                 <div class="input-box">
-                    <a href="SignUpAsFarmer.html">
+                    <a href="../html files/SignUpAsFarmer.html">
                         <input type="button" class="submit" value="FARMER">
                     </a>
                 </div>
 
                 <div class="input-box">
-                    <a href="SignUpAsBuyer.html">
+                    <a href="../html files/SignUpAsBuyer.html">
                         <input type="button" class="submit" value="BUYER">
                     </a>
                 </div>
