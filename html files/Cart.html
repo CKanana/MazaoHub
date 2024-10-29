@@ -1,11 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mazao hub: Cart-page</title>
+    <link rel="stylesheet" href="../CSS-files/MazaoHub.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
 </head>
+
 <body>
+    <header>
+        <div class="hero">
+            <!-- Navigation Menu -->
+            <nav>
+                <div class="icon">
+                    <img src="images/Green and White Plants Organic Logo.png" alt="Mazao Hub Logo">
+                    <h1>MazaoHub</h1>
+                </div>
+                <div class="navmenu">
+                    <ul>
+                        <li><a href="Homepage.html">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Soko</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="login">
+                    <a href="Login.html" class="btn">Login/Signup</a>
+                </div>
+            </nav>
+
+    </header>
     
+    <div class="Order">
+        <div class="Order_space">
+            <p id="empty-cart-message" style="display: none;">You have no orders currently selected into the cart...</p>
+            <section class="container content-section">
+                <div class="cart-row">
+                    <span class="cart-item cart-header cart-column">ITEM</span>
+                    <span class="cart-price cart-header cart-column">PRICE</span>
+                    <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+                </div>
+                <div class="cart-items">
+                    <div class="cart-row">
+                        <div class="cart-item cart-column">
+
+                            <span class="cart-item-title">Farming friends T-Shirt</span>
+                        </div>
+                        <span class="cart-price cart-column">Kshs 830.87</span>
+                        <div class="cart-quantity cart-column">
+                            <input class="cart-quantity-input" type="number" value="1">
+                            <button class="btn-danger" type="button">REMOVE</button>
+                        </div>
+                    </div>
+                    <div class="cart-row">
+                        <div class="cart-item cart-column">
+
+                            <span class="cart-item-title">20 kg bag Rice</span>
+                        </div>
+                        <span class="cart-price cart-column">Kshs 4007.99</span>
+                        <div class="cart-quantity cart-column">
+                            <input class="cart-quantity-input" type="number" value="1">
+                            <button class="btn-danger" type="button">REMOVE</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-total">
+                    <strong class="cart-total-title">Total</strong>
+                    <span class="cart-total-price">Kshs 4838.86</span>
+                </div>
+                
+            </section>
+            <!-- Checkout button -->
+        </div>
+        <div class="purchase_box">
+            <button class="Checkout-btn" type="button">PURCHASE</button>
+        </div>
+    </div>
+    <div class="shop-item">
+        <span class="shop-item-title">Maize Bag</span>
+        <div class="shop-item-details">
+            <span class="shop-item-price">Kshs 3000</span>
+            <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+        </div>
+    </div>
+
+
+
+
+    <!--Footer Section-->
+    <section class="footer" id="footer">
+        <div class="row">
+            <div class="col">
+                <div class="icon">
+                    <img src="images/Green and White Plants Organic Logo.png" alt="logo">
+                    <h1>Mazao Hub</h1>
+                </div>
+                <p>Our mission is to connect you with organizations that are committed to making a positive impact.</p>
+                <div class="social-icons">
+                    <img src="images/message.png" alt="facebook">
+                    <img src="images/twitter.png" alt="twitter">
+                    <img src="images/instagram.png" alt="instagram">
+                    <img src="images/linkedin.png" alt="linkedin">
+                    <img src="images/whatsapp.png" alt="whatsapp">
+                </div>
+            </div>
+            <div class="col">
+                <h3>Quick Links</h3>
+                <div class="footer-lists">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Causes</a></li>
+                        <li><a href="#">Organizations</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <h3>Contact</h3>
+                <p>Siwaka Street<br>Nairobi,Kenya 00100<br>Phone: (254)789764534<br>Email: MazaoHub@gmail.com</p>
+            </div>
+            <div class="col">
+                <h3>NewsLetter</h3>
+                <p>Subscribe to our newsletter to stay up-to-date with our latest news.</p>
+                <form>
+                    <div class="social-icons">
+                        <img src="images/gmail.png" alt="email">
+                    </div>
+
+                    <input type="email" placeholder="Enter your email" required>
+                    <div class="social-icons">
+                        <button type="submit"><img src="images/right.png" alt="send"></button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">Mazao Hub &copy; 2023 All rights reserved.</p>
+    </section>
+
 </body>
+<script src="../JS files/Cart.js"></script>
+
 </html>
