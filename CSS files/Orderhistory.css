@@ -124,157 +124,17 @@ nav::before {
 
 /*End of Button*/
 
-/*Cart section*/
+
 .Order {
     display: flex;
     flex-direction: row;
-    height: 90%;
+    height: 750px;
     width: 100%;
     padding: 10% 5%;
     align-items: start;
 
 
 }
-
-.Order_space {
-    display: flex;
-    /*flex-wrap: wrap;*/
-    justify-content: center;
-    align-content: center;
-    height: auto;
-    width: 75%;
-    border: 1px ridge #121312;
-    border-radius: 30px;
-    padding: 2% 20px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    font-weight: 100;
-
-    /*background-color: #121312;*/
-}
-
-.purchase_box {
-    display: flex;
-    height: 45%;
-    width: 20%;
-    border: 1px ridge #121312;
-    border-radius: 30px;
-    padding: 2%;
-    margin: 20px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-    text-align: justify;
-    align-items: center;
-
-}
-
-.Checkout-btn {
-    background-color: #254731;
-    color: #f3f1e7;
-    height: 40%;
-    width: 100%;
-    padding: 10%;
-    border-style: none;
-    border-radius: 5px;
-}
-
-.Checkout-btn:hover {
-    background-color: #0f1c14;
-    cursor: pointer;
-}
-
-.btn-danger {
-    background-color: #5ea60c;
-    color: #edf1f5;
-    width: 150%;
-    height: 130%;
-    border-style: none;
-    border-radius: 2px;
-}
-
-.btn-danger:hover {
-    background-color: #3b6808;
-    color: #f3f1e7;
-    animation-delay: 300ms;
-    cursor: pointer;
-}
-
-/*cart item stuff*/
-.container .content-section {
-    height: auto;
-}
-
-.cart-column {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid black;
-    margin-right: 1.5em;
-    padding-bottom: 10px;
-    margin-top: 10px;
-}
-
-.cart-row {
-    display: flex;
-    border: #090909;
-}
-
-.cart-item {
-    width: 45%;
-}
-
-.cart-price {
-    width: 20%;
-    font-size: 1.2em;
-    color: #333;
-}
-
-.cart-quantity {
-    width: 35%;
-}
-
-.cart-quantity-input {
-    height: 100%;
-    width: 100%;
-    border-style: none;
-    border-radius: 2px;
-    background-color: #A5D6A7;
-    color: #254731;
-    padding: 0;
-    text-align: center;
-    font-size: 1.2em;
-    margin-right: 25px;
-    caret-color: transparent;
-}
-
-.cart-row:last-child {
-    border-bottom: 1px solid;
-}
-
-.cart-row:last-child .cart-column {
-    border: none;
-}
-
-.cart-total {
-    text-align: end;
-    margin-top: 10px;
-    margin-right: 10px;
-}
-
-.cart-total-title {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: black;
-    margin-right: 20px;
-}
-
-.cart-total-price {
-    color: #333;
-    font-size: 1.1em;
-}
-
-
-
-
-
 
 
 /*Footer section*/
