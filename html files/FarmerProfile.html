@@ -1,11 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MazaoHub - Empowering Farmers</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css">
+
+  <style>
+    /* Color Palette */
+    :root {
+      --light-green: #C1D1B4;
+      --dark-brown: #1C2D1F;
+      --background-light: #F5F3EB;
+      --dark-green: #325134;
+      --star-color: #FFD700;
+      --delivered-color: #598503;
+      --pending-color: #ad5003;
+      --return-color: #7a0404;
+    }
+
+    body {
+      background-color: var(--background-light);
+      font-family: 'Arial', sans-serif;
+    }
+
+    .sidebar {
+      height: 100vh;
+      background-color: var(--dark-green);
+      color: white;
+      padding: 15px;
+      position: fixed;
+      width: 250px;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: 10px;
+      margin: 5px 0;
+      line-height: 20px;
+    }
+
+    .sidebar a:hover {
+      background-color: var(--dark-brown);
+    }
+
+    .dashboard-content {
+      margin-left: 260px;
+      padding: 20px;
+      text-align: center; /* Center alignment of the dashboard content */
+      
+    }
+
+    .stats-card {
+      background-color: var(--light-green);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      color: var(--dark-brown);
+      font-weight: bold;
+    }
+
+    table {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    h3 {
+      color: var(--light-green);
+      font-size: x-large;
+    }
+    h4{
+        color: var(--dark-brown);
+    }
+    h5{
+        color: var(--dark-brown);
+    }
+
+
+    /* Centered Profile Section */
+    .profile-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60vh; /* Adjust height for proper centering */
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      gap: 15px;
+    }
+
+    .profile-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--light-green);
+    }
+
+    .profile-info {
+      max-width: 300px;
+    }
+
+    .profile-info h6 {
+      margin: 0;
+      color: var(--dark-brown);
+      font-weight: bold;
+    }
+
+    .profile-info .role {
+      font-size: 0.9rem;
+      color: gray;
+    }
+
+    .bio {
+      margin: 10px 0;
+      color: var(--dark-brown);
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    .star-rating {
+      color: var(--star-color);
+      font-size: 1rem;
+    }
+
+    .edit-button {
+      margin-top: 10px;
+      background-color: var(--dark-brown);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .edit-button:hover {
+      background-color: var(--dark-green);
+    }
+
+    /* Status Badges */
+    .status-badge {
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .delivered {
+      background-color: var(--delivered-color);
+    }
+
+    .pending {
+      background-color: var(--pending-color);
+    }
+
+    .return {
+      background-color: var(--return-color);
+    }
+
+    .in-progress {
+      background-color: var(--dark-brown);
+    }
+    .products-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .products-section h2 {
+    color: var(--dark-brown);
+    font-weight: bold;
+  }
+
+  /* Card Styling */
+  .card {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+
+  .card:hover {
+    transform: scale(1.02);
+  }
+
+  .card-img-top {
+    height: 250px;
+    object-fit: cover;
+  }
+
+  .card-footer {
+    background-color: #f8f9fa;
+    color: gray;
+    font-size: 0.9rem;
+  }
+
+  .btn-success {
+      margin-top: 10px;
+      background-color: var(--dark-green);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+    padding: 10px 15px;
+    font-weight: bold;
+  }
+  .btn-success:hover {
+      background-color: var(--dark-green);
+    }
+  </style>
 </head>
 <body>
-    
+  <div class="sidebar">
+    <h3>
+      <img src="../html files/images/Green and White Plants Organic Logo.png" alt="Mazao Hub Logo" style="width: 60px; height: 60px; margin-right: 5px; vertical-align: middle; border-radius: 50%;">
+      <b>Mazao Hub</b></h3>
+    <a href="../html files/homepage.html"><i class="fas fa-home"></i> Home</a>
+    <a href="#"><i class="fas fa-users"></i> Customers</a>
+    <a href="#"><i class="fas fa-envelope"></i> Messages</a>
+    <a href="../html files/Farmer.html"><i class="fas fa-cog"></i> Settings</a>
+    <a href="../html files/homepage.html"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+  </div>
+
+  <div class="dashboard-content">
+    <!-- Profile Section -->
+    <div class="profile-container">
+      <div class="profile">
+        <img src="../Assets/person3.jpg" alt="Profile Photo" class="profile-photo" />
+        <div class="profile-info">
+            <h6>
+                Peter Hamisi <i class="fas fa-check-circle" style="color: var(--light-green);" title="Verified"></i>
+              </h6>              
+          <span class="role">Farmer</span>
+          <div class="star-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <i class="far fa-star"></i>
+          </div>
+          <p class="bio">
+            Passionate about sustainable farming practices. Growing organic produce for over 10 years.
+          </p>
+          <button class="edit-button">Edit Profile</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="stats-card text-center">
+          <h5>Daily Views</h5>
+          <h2>1,504</h2>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stats-card text-center">
+          <h5>Sales</h5>
+          <h2>80</h2>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stats-card text-center">
+          <h5>Comments</h5>
+          <h2>284</h2>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stats-card text-center">
+          <h5>Earnings</h5>
+          <h2>100,842</h2>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="mt-4">Recent Orders</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Payment</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Onions</td>
+          <td>1 bag</td>
+          <td>5600</td>
+          <td>Paid</td>
+          <td><span class="status-badge delivered">Delivered</span></td>
+        </tr>
+        <tr>
+          <td>Maize</td>
+          <td>2 bags</td>
+          <td>11200</td>
+          <td>Due</td>
+          <td><span class="status-badge pending">Pending</span></td>
+        </tr>
+        <tr>
+          <td>Arabica coffee</td>
+          <td>4 bags</td>
+          <td>60000</td>
+          <td>Paid</td>
+          <td><span class="status-badge return">Return</span></td>
+        </tr>
+        <tr>
+          <td>Sugarcane</td>
+          <td>1 bag</td>
+          <td>5000</td>
+          <td>Due</td>
+          <td><span class="status-badge in-progress">In Progress</span></td>
+        </tr>
+      </tbody>
+    </table>
+   <div class="products-section mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2>My Products</h2>
+      <button class="btn btn-success" style="background-color: var(--dark-green); border: none;">
+        + Add Product
+      </button>
+    </div>
+
+    <div class="row">
+      <!-- Product Card 1 -->
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow-sm">
+          <img src="tomatoes.jpeg" 
+               class="card-img-top" alt="Organic Tomatoes" />
+          <div class="card-body">
+            <h5 class="card-title">Organic Tomatoes</h5>
+            <p class="card-text">Fresh tomatoes straight from the farm! 🍅🌱 #organic #local #farmtotable</p>
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <span><i class="fas fa-heart"></i> 120 Likes</span>
+            <span><i class="fas fa-comment"></i> 30 Comments</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 2 -->
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow-sm">
+          <img src="eggs.jpeg" 
+               class="card-img-top" alt="Farm-Fresh Eggs" />
+          <div class="card-body">
+            <h5 class="card-title">Farm-Fresh Eggs</h5>
+            <p class="card-text">Fresh and free-range eggs available now! 🥚 #freeRange #organic #eggs</p>
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <span><i class="fas fa-heart"></i> 85 Likes</span>
+            <span><i class="fas fa-comment"></i> 12 Comments</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow-sm">
+          <img src="onion.jpeg" 
+               class="card-img-top" alt="Farm-Fresh Eggs" />
+          <div class="card-body">
+            <h5 class="card-title">Farm-Fresh Onions</h5>
+            <p class="card-text">Fresh onions restocked now! Get  your farm fresh red onions #farmfresh #organic #onions</p>
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <span><i class="fas fa-heart"></i> 10 Likes</span>
+            <span><i class="fas fa-comment"></i> 25 Comments</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

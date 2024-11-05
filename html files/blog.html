@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Page - Featured Content</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+/*Navigation bar*/
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background: rgba(6, 82, 6, 0.25); 
+  border-bottom: 1px solid rgba(240, 255, 240, 0.4);
+  box-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(240, 255, 240, 0.1) inset;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(15px); 
+  -webkit-backdrop-filter: blur(15px);
+}
+
+nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(240, 255, 240, 0.4),
+    transparent
+  );
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.icon img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+
+  box-shadow: 10px 10px 30px rgba(0, 1, 0, 0.5);
+  
+}
+
+.icon h1 {
+  font-size: 30px;
+  margin: 0;
+  color: #090909; 
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.icon p {
+  color: #050505; 
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.navmenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navmenu ul li {
+  display: inline-block;
+  margin: 10px 15px;
+}
+
+.navmenu ul li a {
+  text-decoration: none;
+  color: #050505; 
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+
+.navmenu ul li a:hover {
+  color: #fefefe; 
+}
+
+/* Button styles */
+.Lbtn {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 400;
+  color: white;
+  padding: 14px 40px;
+  background:#1d3420;
+  font-size: 14px;
+  border-radius: 30px;
+  border-top-right-radius: 0;
+ 
+
+  
+}
+
+.Lbtn:hover {
+  border-top-right-radius: 30px;
+  background: linear-gradient(to bottom, #A5D6A7, #81C784);
+  color: #000000;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    0 1px 0 rgba(255, 255, 255, 0.3) inset;
+}
+        /* Banner */
+        .banner {
+            background-color:#1d3420;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Content styling */
+        .content {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .content h2 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            line-height: 1.6;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            position: relative;
+            max-width: 500px;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Slide styling */
+        .slide {
+            display: none;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .slide-content {
+            padding: 15px;
+            background-color: white;
+        }
+
+        .text-container {
+            background-color: #ffffff;
+            padding: 15px;
+            border-top: 1px solid #e0e0e0;
+            text-align: left;
+        }
+
+        .text-container h3 a {
+            text-decoration: none;
+            color: #4CAF50;
+        }
+
+        .text-container h3 a:hover {
+            text-decoration: underline;
+        }
+
+        .authors {
+            font-style: italic;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        /* Navigation buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 16px;
+            color: black;
+            font-weight: bold;
+            font-size: 24px;
+            background-color: rgba(86, 240, 84, 0.5);
+            border-radius: 3px;
+
+        }
+        
+        .prev {
+            left: 300px;
+        }
+        
+        .next {
+            right: 300px;
+        }
+
+        /* Dot navigation */
+        .dot-container-wrapper {
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 4px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: #4CAF50;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+  <header>
+  <nav>
+    <div class="icon">
+        <img src="../html files/images/Green and White Plants Organic Logo.png" alt="Mazao Hub Logo">
+        <h1>MazaoHub</h1>
+    </div>
+    <div class="navmenu">
+        <ul>
+            <li><a href="../html files/homepage.html">Home</a></li>
+            <li><a href="../html files/AboutUs.html">About</a></li>
+            <li><a href="../html files/Soko.html">Soko</a></li>
+            <li><a href="../html files/blog.html">Blog</a></li>
+            <li><a href="../html files/FAQs.html">FAQs</a></li>
+        </ul>
+    </div>
+    <div class="login">
+       
+        <a href="signup.html" class="Lbtn">Login/Signup</a>
+    </div>
+</nav>
+</header>
+<div class="banner">
+    <h1>Welcome to the MazaoHub Blog</h1>
+    <p>Your go-to resource for sustainable agriculture tips and insights</p>
+</div>
+
+<div class="content">
+   
+
+    <div class="slideshow-container">
+        <!-- Slide 1 -->
+        <div class="slide">
+            <div class="slide-content">
+                <img src="../Assets/farmer6.jpg" alt="Image of vegetables">
+                <div class="text-container">
+                    <h3><a href="https://shalaola101.wordpress.com/2024/10/22/mazaohub-post-2/">3 Crops That Are Favourable For Growth This Season</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...</p>
+                    <div class="authors">By Tracy</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div class="slide-content">
+                <img src="../Assets/blog2.jpg" alt="A forest partially burnt down">
+                <div class="text-container">
+                    <h3><a href="https://shalaola101.wordpress.com/2024/10/22/mazaohub-post-2/">Climate change and why you should be worried</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...</p>
+                    <div class="authors">By Joy</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+          <div class="slide-content">
+              <img src="../Assets/blog4.jpg" alt="A person gardening">
+              <div class="text-container">
+                  <h3><a href="https://shalaola101.wordpress.com/2024/10/22/mazaohub-post-2/">Want to start farming but don't know where to start?</a></h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...</p>
+                  <div class="authors">By Joy</div>
+              </div>
+          </div>
+      </div>
+        
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="moveSlides(-1)">&#8592;</a>
+        <a class="next" onclick="moveSlides(1)">&#8594;</a>
+    </div>
+
+    <!-- Dot navigation -->
+    <div class="dot-container-wrapper">
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span> 
+            <span class="dot" onclick="currentSlide(2)"></span> 
+            <span class="dot" onclick="currentSlide(3)"></span> 
+            
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2024 MazaoHub Blog - All rights reserved.
+</footer>
+
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function moveSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("slide");
+        let dots = document.getElementsByClassName("dot");
+        
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
+</script>
+
+</body>
+</html>
