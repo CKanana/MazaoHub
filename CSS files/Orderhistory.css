@@ -125,7 +125,7 @@ nav {
 /*End of Button*/
 
 /*main sectiom*/
-#orders {
+#Orders-sec {
     padding: 20px;
     background-color: #f3f1e7; 
     border-radius: 15px; 
@@ -135,7 +135,6 @@ nav {
     margin-top: 150px;
     margin-bottom: 150px;
     position: relative;
-   
 }
 button{
     background-color: #254731;
@@ -162,10 +161,23 @@ button:hover{
     color: #254731; /* Change title color to match theme */
 }
 
-.orders {
+.Orders-inner {
     text-align: center; /* Center align the content */
     font-size: 1.2em; /* Increase font size for better readability */
     color: #333; /* Text color */
+    display: flex;
+    flex-direction: column;
+}
+/*#Order-item-sec{
+  display: block;
+  border: #254731;
+  background-color: #A5D6A7;
+}*/
+.order-item{
+  border: #254731;
+  border-radius: 14px;
+  background-color: #A5D6A7;
+  margin-bottom: 3% ;
 }
 
 /* Responsive Styles */
