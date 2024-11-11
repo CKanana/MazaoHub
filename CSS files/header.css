@@ -1,0 +1,20 @@
+.cart-icon img{
+    height: 40px;
+    width: 40px;
+
+    margin-left: 20px;
+}
+.cart-counter {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color:#81C784;
+    color: #1d3420;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 2px 6px;
+    min-width: 18px;
+    text-align: center;
+    font-weight: bold;
+    display: none; /* Hidden when count is zero */
+}
