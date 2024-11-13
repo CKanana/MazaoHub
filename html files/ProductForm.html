@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <style>
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f2f5f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            width: 350px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 2px solid #4a7c59; 
+        }
+
+        
+        h2 {
+            color: #4a7c59;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        
+        label {
+            display: block;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+    
+        input[type="text"],
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: #4a7c59;
+            outline: none;
+        }
+
+        
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+            max-height: 150px;
+        }
+
+        
+        .submit-btn, .back-btn {
+            background-color: #4a7c59;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .submit-btn:hover, .back-btn:hover {
+            background-color: #3a6245;
+        }
+
+        .remove-btn {
+            background-color: #d9534f;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .remove-btn:hover {
+            background-color: #c9302c;
+        }
+
+        
+        .image-preview {
+            margin-top: 15px;
+            display: none;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+    
+        input::placeholder,
+        textarea::placeholder {
+            color: #aaa;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add New Product</h2>
+        <form action="/add-product" method="POST" enctype="multipart/form-data">
+            <label for="productImage">Product Image</label>
+            <input type="file" id="productImage" name="productImage" accept="image/*" required onchange="previewImage(event)">
+            <img id="imagePreview" class="image-preview" alt="Product Image Preview">
+
+            <button type="button" class="remove-btn" onclick="removeImage()">Remove Image</button>
+
+            <label for="productName">Product Name</label>
+            <input type="text" id="productName" name="productName" placeholder="Enter product name" required>
+            
+            <label for="productDescription">Caption</label>
+            <textarea id="productDescription" name="productDescription" placeholder="Write a brief description" rows="4" required></textarea>
+            
+            <label for="hashtags">Hashtags</label>
+            <input type="text" id="hashtags" name="hashtags" placeholder="#organic #local" required>
+
+            <button type="submit" class="submit-btn">Add Product</button>
+        </form>
+        
+        <button onclick="goBack()" class="back-btn">Back to Profile</button>
+    </div>
+
+    <script>
+
+        function previewImage(event) {
+            const preview = document.getElementById('imagePreview');
+            const file = event.target.files[0];
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+                preview.style.display = 'block';
+            } else {
+                preview.style.display = 'none';
+            }
+        }
+
+    
+        function removeImage() {
+            const preview = document.getElementById('imagePreview');
+            const fileInput = document.getElementById('productImage');
+            fileInput.value = ''; 
+            preview.src = '';     
+            preview.style.display = 'none'; 
+        }
+
+        
+        function goBack() {
+            window.location.href = 'FarmerProfile.html'; 
+        }
+    </script>
+</body>
+</html>
