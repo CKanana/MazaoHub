@@ -46,6 +46,7 @@
         /* Input fields */
         input[type="text"],
         input[type="file"],
+        input[type="number"],
         textarea {
             width: 100%;
             padding: 10px;
@@ -60,6 +61,7 @@
 
         /* Hover and Focus States */
         input[type="text"]:focus,
+        input[type="number"]:focus,
         textarea:focus {
             border-color: #4a7c59;
             outline: none;
@@ -136,22 +138,23 @@
             <label for="productImage">Product Image</label>
             <input type="file" id="productImage" name="productImage" accept="image/*" required onchange="previewImage(event)">
             <img id="imagePreview" class="image-preview" alt="Product Image Preview">
-
-            <!-- Remove Image Button Aligned to the Left -->
+        
             <button type="button" class="remove-btn" onclick="removeImage()">Remove Image</button>
-
+        
             <label for="productName">Product Name</label>
             <input type="text" id="productName" name="productName" placeholder="Enter product name" required>
-            
+        
             <label for="productDescription">Caption</label>
             <textarea id="productDescription" name="productDescription" placeholder="Write a brief description" rows="4" required></textarea>
-            
+        
             <label for="hashtags">Hashtags</label>
             <input type="text" id="hashtags" name="hashtags" placeholder="#organic #local" required>
-
+        
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" placeholder="Enter price" required step="0.01" min="0">
+        
             <button type="submit" class="submit-btn">Add Product</button>
         </form>
-        
         <button onclick="goBack()" class="back-btn">Back to Profile</button>
     </div>
 
