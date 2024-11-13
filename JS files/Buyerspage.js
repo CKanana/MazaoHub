@@ -2,6 +2,37 @@ let currentSlide = 0;
 const slides = document.querySelectorAll('.carousel-item');
 const nextButton = document.querySelector('#nextButton');
 const prevButton = document.querySelector('#prevButton');
+let carouselInterval;
+
+function startCarouselAutoplay() {
+  carouselInterval = setInterval(() => {
+    const carousel = document.getElementById('carouselExample');
+    const activeSlide = carousel.querySelector('.carousel-item.active');
+    const nextSlide = activeSlide.nextElementSibling || carousel.querySelector('.carousel-item:first-child');
+
+    // Remove active class from current slide and add to the next slide
+    activeSlide.classList.remove('active');
+    nextSlide.classList.add('active');
+  }, 5000); // Adjust delay as needed
+}
+
+function stopCarouselAutoplay() {
+  clearInterval(carouselInterval);
+}
+
+// Start the autoplay when the carousel is ready
+document.addEventListener('DOMContentLoaded', () => {
+  startCarouselAutoplay();
+
+  // Define prev and next buttons for interaction
+  const prevBtn = document.querySelector('.carousel-control-prev');
+  const nextBtn = document.querySelector('.carousel-control-next');
+
+  // Stop autoplay when user interacts with carousel
+  prevBtn.addEventListener('click', stopCarouselAutoplay);
+  nextBtn.addEventListener('click', stopCarouselAutoplay);
+});
+
 
 function showSlide(index) {
     // Remove the active class from the current slide
