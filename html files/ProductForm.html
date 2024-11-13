@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Product</title>
     <style>
-        /* General Styles */
+        
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             background-color: #f2f5f7;
@@ -16,7 +16,6 @@
             margin: 0;
         }
 
-        /* Container */
         .form-container {
             background-color: #ffffff;
             border-radius: 12px;
@@ -24,17 +23,17 @@
             width: 350px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
             text-align: center;
-            border: 2px solid #4a7c59; /* Add a border */
+            border: 2px solid #4a7c59; 
         }
 
-        /* Heading */
+        
         h2 {
             color: #4a7c59;
             margin-bottom: 20px;
             font-size: 24px;
         }
 
-        /* Labels */
+        
         label {
             display: block;
             font-weight: 500;
@@ -43,7 +42,7 @@
             text-align: left;
         }
 
-        /* Input fields */
+    
         input[type="text"],
         input[type="file"],
         input[type="number"],
@@ -59,7 +58,7 @@
             font-family: inherit;
         }
 
-        /* Hover and Focus States */
+        
         input[type="text"]:focus,
         input[type="number"]:focus,
         textarea:focus {
@@ -67,14 +66,14 @@
             outline: none;
         }
 
-        /* Textarea */
+        
         textarea {
             resize: vertical;
             min-height: 80px;
             max-height: 150px;
         }
 
-        /* Submit and Back Button */
+        
         .submit-btn, .back-btn {
             background-color: #4a7c59;
             color: white;
@@ -93,7 +92,6 @@
             background-color: #3a6245;
         }
 
-        /* Remove Image Button */
         .remove-btn {
             background-color: #d9534f;
             color: white;
@@ -113,7 +111,7 @@
             background-color: #c9302c;
         }
 
-        /* Image Preview */
+        
         .image-preview {
             margin-top: 15px;
             display: none;
@@ -123,7 +121,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Placeholder Text Styling */
+    
         input::placeholder,
         textarea::placeholder {
             color: #aaa;
@@ -138,7 +136,8 @@
             <label for="productImage">Product Image</label>
             <input type="file" id="productImage" name="productImage" accept="image/*" required onchange="previewImage(event)">
             <img id="imagePreview" class="image-preview" alt="Product Image Preview">
-        
+
+            <!-- Remove Image Button Aligned to the Left -->
             <button type="button" class="remove-btn" onclick="removeImage()">Remove Image</button>
         
             <label for="productName">Product Name</label>
@@ -159,7 +158,7 @@
     </div>
 
     <script>
-        // Preview Image Function
+
         function previewImage(event) {
             const preview = document.getElementById('imagePreview');
             const file = event.target.files[0];
@@ -171,18 +170,18 @@
             }
         }
 
-        // Remove Image Function
+    
         function removeImage() {
             const preview = document.getElementById('imagePreview');
             const fileInput = document.getElementById('productImage');
-            fileInput.value = ''; // Clear file input
-            preview.src = '';     // Remove preview image source
-            preview.style.display = 'none'; // Hide preview image
+            fileInput.value = ''; 
+            preview.src = '';     
+            preview.style.display = 'none'; 
         }
 
-        // Back Button Function
+        
         function goBack() {
-            window.location.href = 'FarmerProfile.html'; // Redirect to profile page (update the URL if needed)
+            window.location.href = 'FarmerProfile.html'; 
         }
     </script>
 </body>
