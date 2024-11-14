@@ -257,3 +257,32 @@ nav {
 .recommend-btns button:hover {
     background-color: #388E3C; 
 }
+.adding_to_cart{
+  height: 100%;
+  width: auto;
+  display: flex;
+  padding-top: 3%;
+  align-items: flex-end;
+  justify-content: right;
+}
+.add-to-cart{
+  height:3%;
+  width: 20%;
+  background-color: #254731;
+  color: #f3f1e7;
+  border-style: none;
+  border-radius: 5px;
+  transition: 400ms;
+  font-weight: 200;
+
+}
+.add-to-cart:hover{
+  background-color: #14251b;
+  cursor: pointer;
+  height: 30%;
+  width: 21%;
+  box-shadow: 
+      0 5px 15px rgba(0, 0, 0, 0.1),
+      0 1px 2px rgba(240, 255, 240, 0.1) inset;
+  
+}
