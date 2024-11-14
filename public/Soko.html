@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS files/Soko.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <div class="icon">
+            <img src= "../Assets/Green and White Plants Organic Logo.png"alt="Mazao Hub Logo"/>
+            <h1>MazaoHub</h1>
+        </div>
+        <div class="navmenu">
+            <ul>
+                <li><a href="/homepage.html">Home</a></li>
+                <li><a href="/AboutUs.html">About</a></li>
+                <li><a href="/Soko.html">Soko</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/FAQs.html">FAQs</a></li>
+            </ul>
+        </div>
+        <div class="login">
+           
+            <a href="signup.html" class="Lbtn">Login/Signup</a>
+        </div>
+    </nav>
+    <div class="sidebar">
+        <h2 class="sidebar-title">Categories</h2>
+        <ul class="sidebar-list">
+            <li class="sidebar-item active">Fruits & Vegetables</li>
+            <li class="sidebar-item">Dairy Products</li>
+            <li class="sidebar-item">Grains</li>
+            <li class="sidebar-item">Meat & Poultry</li>
+            <li class="sidebar-item">Beverages</li>
+        </ul>
+        <h2 class="sidebar-title">Account</h2>
+        <ul class="sidebar-list">
+            <li class="sidebar-item">Profile</li>
+            <li class="sidebar-item">Orders</li>
+            <li class="sidebar-item">Wishlist</li>
+            <li class="sidebar-item">Settings</li>
+        </ul>
+    </div>
+
+    <div class="recommend">
+        <h1>Recommended</h1>
+        <div class="recommend-btns">
+           
+            <button>Greens</button>
+            <button>Honey</button>
+            <button>Meat</button>
+            <button>Fruits</button>
+            <button>Fertilizer</button>
+
+        </div>
+        </div>
+
+        <div class="container" id="product-container"></div>
+
+        <script>
+            // Fetch products and display them in the product container
+            async function loadProducts() {
+                try {
+                    const response = await fetch('http://localhost:3000/api/products');
+                    const products = await response.json();
+                    
+                    const productContainer = document.getElementById('product-container');
+                    productContainer.innerHTML = '';  // Clear existing content
+    
+                    // Loop through each product and create a card
+                    products.forEach(product => {
+                        const productCard = document.createElement('div');
+                        productCard.classList.add('card');
+    
+                        // Add HTML structure for each product
+                        productCard.innerHTML = `
+                            <img src="../${product.image_path}" alt="${product.product_name}" class="card-img" />
+                            <div class="card-details">
+                                <h3 class="card-title">${product.product_name}</h3>
+                                <p>${product.caption}</p>
+                                <div class="reviews-section">
+                                    <span class="rating">⭐⭐⭐⭐⭐</span>
+                                    <span class="total-reviews">(10 reviews)</span>
+                                </div>
+                                <section class="card-price">
+                                    <div class="price">Ksh ${product.price}</div>
+                                </section>
+                                <button id="cartbtn ">Add to Cart</button>
+                            </div>
+                        `;
+                        productContainer.appendChild(productCard);
+                    });
+                } catch (error) {
+                    console.error('Error loading products:', error);
+                }
+            }
+    
+            // Load products when the page loads
+            window.onload = loadProducts;
+        </script>
+</body>
+</html>
