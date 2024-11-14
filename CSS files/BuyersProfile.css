@@ -519,14 +519,16 @@ h2 {
 }
 
 /* Discounts grid */
+
 .discounts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Adjusted for smaller cards */
   gap: 20px;
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
+
 
 /* Discount card styling */
 .discount-card {
@@ -536,47 +538,39 @@ h2 {
   overflow: hidden;
   text-align: center;
   position: relative;
-  padding: 15px;
+  padding: 10px; /* Reduced padding */
+  width: 180px; /* Smaller width */
+  height: 300px; /* Fixed height */
+  margin: 0 auto; /* Centering */
 }
 
 .discount-card img {
   width: 100%;
-  height: auto;
+  height: 120px; /* Reduced image height */
+  object-fit: cover;
   border-radius: 5px;
 }
 
 .discount-card h3 {
-  margin: 15px 0;
-  font-size: 1.2em;
-  color: #333;
+  margin: 10px 0;
+  font-size: 1em; /* Reduced font size */
 }
 
 .original-price {
   text-decoration: line-through;
   color: #888;
-  font-size: 0.9em;
+  font-size: 0.8em; /* Reduced font size */
 }
 
 .discounted-price {
-  font-size: 1.1em;
+  font-size: 1em; /* Slightly reduced size */
   font-weight: bold;
   color: #d9534f;
 }
 
-.discount-badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: #d9534f;
-  color: #fff;
-  padding: 5px 10px;
-  font-size: 0.8em;
-  border-radius: 3px;
-}
-
 .buy-now {
   margin-top: 10px;
-  padding: 10px 15px;
+  padding: 8px 12px; /* Reduced padding */
   background-color: #5cb85c;
   color: #fff;
   border: none;
@@ -589,6 +583,7 @@ h2 {
   background-color: #4cae4c;
 }
 
+
 /* Responsive styling */
 @media (max-width: 768px) {
   .discount-card {
@@ -598,4 +593,113 @@ h2 {
   header h1 {
     font-size: 1.5em;
   }
+}
+/* Map container styling */
+#map {
+  height: 500px; /* Adjust the height as needed */
+  width: 100%;
+  border: 3px solid #006400; /* Dark green border */
+  box-shadow: 0 8px 20px rgba(0, 128, 0, 0.5); /* Green drop shadow */
+  border-radius: 10px; /* Rounded corners */
+  margin-top: 20px; /* Space from other elements */
+}
+
+/* Full height and reset margin/padding */
+
+.footer {
+  
+  background-color: #e1dddd;
+  width: 100%;
+  position: absolute;
+  padding: 80px 0px 30px;
+  color: #000000;
+  font-size: 1.0rem;
+
+}
+.footer h1{
+color:#020904;
+}
+.row {
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+width: 85%;
+margin: auto;
+align-items: flex-start;
+}
+.col {
+flex-basis: 18%;
+padding: 10px;
+}
+.footer-lists ul {
+list-style: none;
+padding: 0;
+}
+.col h3 {
+color:#0d0d0d;
+}
+
+.footer-lists ul li {
+margin-bottom: 5px;
+list-style: none;
+}
+
+.footer-lists ul li a {
+text-decoration: none;
+color: #070707;
+}
+form {
+padding-bottom: 15px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+border-bottom: 1px solid #e2f0e6;
+margin-bottom: 50px;
+}
+form img {
+font-size: 18px;
+margin-right: 10px;
+}
+form input {
+width: 100%;
+background: transparent;
+color: #0c0c0c;
+border: 0;
+outline: none;
+}
+form button {
+background: transparent;
+border: 0;
+outline: none;
+cursor: pointer;
+}
+form button img {
+width: 16px;
+margin-right: 10px;
+}
+.social-icons img {
+width: 32px;
+height: 32px;
+border-radius: 50%;
+text-align: center;
+line-height: 40px;
+font-size: 20px;
+margin-right: 10px;
+cursor: pointer;
+box-shadow: #09ef4e;
+}
+.copyright {
+width: 100%;
+color: #fbfffc;
+text-align: center;
+background: #090909;
+font-weight: 300;
+margin-top: 0px;
+}
+hr {
+width: 90%;
+border: 0;
+border-bottom: 5px solid #070707;
+
+margin: 20px auto;
 }

@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet/dist/leaflet.css"
+    />
 </head>
 <header>
 <body> 
@@ -17,7 +21,7 @@
     <nav>
       <!-- Logo section -->
       <div class="icon">
-        <img src="images/Green and White Plants Organic Logo.png" alt="Mazao Hub Logo">
+        <img src="../Assets/Green and White Plants Organic Logo.png" alt="Mazao Hub Logo">
         <h1>MazaoHub</h1>
       </div>
     
@@ -54,18 +58,15 @@
 </header>
     <!-- end header section -->
     <!-- slider section -->
-
     <section class="slider_section">
-      <div id="carouselExample" class="carousel slide" data-ride="carousel">
+      <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <!-- Slide 1 -->
           <div class="carousel-item active">
             <div class="slide-content">
               <div class="text-box">
-                <h1>Go shopping </h1>
-                
+                <h1>Go shopping</h1>
                 <p>For fresh and quality farm produce</p>
-             
               </div>
               <img src="../Assets/farmer4.jpg" alt="Farmer Image" class="slide-img">
             </div>
@@ -76,7 +77,6 @@
               <div class="text-box">
                 <h1>Browse Farmers</h1>
                 <p>Explore all the available farmers and their ratings</p>
-               
               </div>
               <img src="../Assets/farmer9.jpg" alt="Farmers" class="slide-img">
             </div>
@@ -87,14 +87,23 @@
               <div class="text-box">
                 <h1>Deals and Promotions</h1>
                 <p>Discover some of today’s greatest deals</p>
-                
               </div>
               <img src="../Assets/sale.jpg" alt="Promotions" class="slide-img">
             </div>
           </div>
         </div>
-        
+        <!-- Controls -->
+        <a class="carousel-control-prev" href="#carouselExample" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExample" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
     </section>
+    
 
     <!-- end slider section -->
   </div>
@@ -257,15 +266,132 @@
 
 
 </section>
-<h2>Farms Near You</h2>
-<div id="map"></div>
-<script src="../JS files/Buyerspage.js"></script>
-<!-- Google Maps API Script with my API Key 
-<script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
-<script src="script.js"></script>
-  
--->
+<div class="map-container">
+  <div class="search-box">
+    <input id="search-input" type="text" placeholder="Search for farmers or locations" />
+  </div>
+  <div id="map"></div>
+</div>
+<!-- Load the Google Maps JavaScript API -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+  // Initialize the map
+  const map = L.map("map").setView([0, 0], 2); // Default view before geolocation
 
+  // Use OpenStreetMap tiles
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Geolocation to get the user's current location
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const userLat = position.coords.latitude;
+        const userLng = position.coords.longitude;
+        map.setView([userLat, userLng], 12); // Center the map on the user's location
+
+        // Add a marker for the user's location
+        L.marker([userLat, userLng])
+          .addTo(map)
+          .bindPopup("You are here")
+          .openPopup();
+
+        // Example: Adding markers for nearby farmers
+        const farmers = [
+          { name: "John Wambugu", lat: -1.303193, lng: 36.707308, location: "Nakuru, Kenya" },
+          { name: "Peter Hamisi", lat: -1.286389, lng: 36.817223, location: "Nairobi, Kenya" },
+          { name: "Ivy Atieno", lat: -0.0917, lng: 34.768, location: "Kisumu, Kenya" }
+        ];
+
+        // Loop through the farmers and add markers
+        farmers.forEach((farmer) => {
+          L.marker([farmer.lat, farmer.lng])
+            .addTo(map)
+            .bindPopup(`${farmer.name} - ${farmer.location}`);
+        });
+      },
+      () => {
+        alert("Unable to retrieve your location. Make sure location services are enabled.");
+      }
+    );
+  } else {
+    alert("Geolocation is not supported by your browser.");
+  }
+
+  // Handle search functionality
+  const searchInput = document.getElementById("search-input");
+searchInput.addEventListener("input", () => {
+  const searchTerm = searchInput.value.toLowerCase();
+
+  farmerMarkers.forEach((marker) => {
+    const popupContent = marker.getPopup().getContent().toLowerCase();
+    if (popupContent.includes(searchTerm)) {
+      marker.addTo(map);
+    } else {
+      marker.remove();
+    }
+  });
+});
+
+</script>
+
+<section  id="footer" class="footer">
+  <div class="row">
+      <div class="col">
+          <div class="icon">
+              <img src="../Assets/Green and White Plants Organic Logo.png " alt="logo">
+              <h1>Mazao Hub</h1>
+          </div>
+          <p>Our mission is to connect you with organizations that are committed to making a positive impact.</p>
+          <div class="social-icons">
+              <img src="../Assets/message.png" alt="facebook">
+              <img src="../Assets/twitter.png" alt="twitter">
+              <img src="../Assets/instagram.png" alt="instagram">
+              <img src="../Assets/linkedin.png" alt="linkedin">
+              <img src="../Assets/whatsapp.png" alt="whatsapp">
+          </div>
+      </div>
+      <div class="col">
+          <h3>Quick Links</h3>
+          <div class="footer-lists">
+              <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Organizations</a></li>
+                  <li><a href="#">Blog</a></li>
+              </ul>
+          </div>
+      </div>
+      <div class="col">
+          <h3>Contact</h3>
+          <p>Siwaka Street<br>Nairobi,Kenya 00100<br>Phone: (254)789764534<br>Email: MazaoHub@gmail.com</p>
+      </div>
+      <div class="col">
+          <h3>NewsLetter</h3>
+          <p>Subscribe to our newsletter to stay up-to-date with our latest news.</p>
+          <form>
+              <div class="social-icons">
+                  <img src="../Assets/gmail.png" alt="email" >
+              </div>
+              
+              <input type="email" placeholder="Enter your email" required>
+              <div class="social-icons">
+                  <button type="submit"><img src="../Assets/right.png" alt="send"></button>
+              </div>
+             
+          </form>
+      </div>
+  </div>
+  <hr>
+  <p class="copyright">Mazao Hub &copy; 2023 All rights reserved.</p>
+</section>  
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="../JS files/Buyerspage.js"></script>
 </body>
 
 </html>
