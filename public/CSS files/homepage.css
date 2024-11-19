@@ -1,4 +1,4 @@
-/* Reset default styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -719,4 +719,111 @@ hr {
   border-bottom: 5px solid #070707;
 
   margin: 20px auto;
+}
+
+
+/* For tablets and smaller devices (screen width <= 768px) */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+    padding: 40px 10px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5em;
+  }
+
+  .hero-text p {
+    font-size: 1em;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .image-wrapper {
+    height: 50vh;
+    background-position: center;
+  }
+
+  .column, .column2 {
+    width: 100%;
+    height: auto;
+  }
+
+  .testimonial-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 50px 20px;
+  }
+}
+
+/* For mobile devices (screen width <= 480px) */
+@media (max-width: 480px) {
+  nav {
+    padding: 5px;
+  }
+
+  .icon img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon h1 {
+    font-size: 24px;
+  }
+
+  .hero-section {
+    padding: 20px 5%;
+  }
+
+  .hero-text h1 {
+    font-size: 2em;
+  }
+
+  .hero-text p {
+    font-size: 0.9em;
+  }
+
+  .blog-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .blog-card img {
+    height: 200px;
+  }
+
+  #whysection h2 {
+    font-size: 1.5rem;
+  }
+
+  .cta-buttons button, .column3 button, .image-wrapper button {
+    font-size: 0.9em;
+    padding: 10px 15px;
+  }
+
+  .footer {
+    padding: 30px 10px;
+  }
+
+  .footer-lists ul li {
+    margin-bottom: 8px;
+  }
+  
+  .copyright {
+    font-size: 0.8rem;
+  }
 }
