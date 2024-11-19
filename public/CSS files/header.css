@@ -18,3 +18,112 @@
     font-weight: bold;
     display: none; /* Hidden when count is zero */
 }
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: rgba(6, 82, 6, 0.25); 
+    border-bottom: 1px solid rgba(240, 255, 240, 0.4);
+    box-shadow: 
+      0 5px 15px rgba(0, 0, 0, 0.1),
+      0 1px 2px rgba(240, 255, 240, 0.1) inset;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px);
+  }
+  
+  nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(240, 255, 240, 0.4),
+      transparent
+    );
+  }
+  
+  .icon {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .icon img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  
+    box-shadow: 10px 10px 30px rgba(0, 1, 0, 0.5);
+    
+  }
+  
+  .icon h1 {
+    font-size: 30px;
+    margin: 0;
+    color: #090909; 
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .icon p {
+    color: #050505; 
+    margin-left: 10px;
+    font-size: 14px;
+  }
+  
+  .navmenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navmenu ul li {
+    display: inline-block;
+    margin: 10px 15px;
+  }
+  
+  .navmenu ul li a {
+    text-decoration: none;
+    color: #050505; 
+    font-weight: 400;
+    transition: all 0.3s ease;
+  }
+  
+  .navmenu ul li a:hover {
+    color: #fefefe; 
+  }
+  
+  /* Button styles */
+  .Lbtn {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 400;
+    color: white;
+    padding: 14px 40px;
+    background:#1d3420;
+    font-size: 14px;
+    border-radius: 30px;
+    border-top-right-radius: 0;
+  
+    
+  }
+  
+  .Lbtn:hover {
+    border-top-right-radius: 30px;
+    background: linear-gradient(to bottom, #A5D6A7, #81C784);
+    color: #000000;
+    box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.2),
+      0 1px 0 rgba(255, 255, 255, 0.3) inset;
+  }
