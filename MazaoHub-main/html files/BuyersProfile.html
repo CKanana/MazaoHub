@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mazao Hub - Empowering Farmers</title>
+    <link rel="stylesheet" href="../CSS files/BuyersProfile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet/dist/leaflet.css"
+    />
+</head>
+<header>
+<body> 
+  
+    <!-- header section starts -->
+    <nav>
+      <!-- Logo section -->
+      <div class="icon">
+        <img src="../Assets/Green and White Plants Organic Logo.png" alt="Mazao Hub Logo">
+        <h1>MazaoHub</h1>
+      </div>
+    
+      <!-- Search bar -->
+      <div class="search__container">
+        <input class="search__input" type="text" placeholder="What are you looking for?">
+      </div>
+    
+      <!-- Navigation menu -->
+      <div class="navmenu">
+        <ul>
+          <li><a href="../html files/Soko.html">Soko</a></li>
+          <li><a href="../html files/blog.html">Blog</a></li>
+          <li>
+            <div class="Account"><a href="../html files/Buyer.html">Account
+              <svg width="15" height="15" viewBox="0 0 60 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 15C15 23.27 21.73 30 30 30C38.27 30 45 23.27 45 15C45 6.73 38.27 0 30 0C21.73 0 15 6.73 15 15ZM56.6667 63.3333H60V60C60 47.1367 49.53 36.6667 36.6667 36.6667H23.3333C10.4667 36.6667 0 47.1367 0 60V63.3333H56.6667Z" fill="black"/>
+              </svg>
+            </div></a>
+          </li>
+          <li>
+            <div class="cart"><a href="../html files/Cart.html">Cart
+              <svg width="15" height="15" viewBox="0 0 68 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.83337 2.95837H14.1667L21.76 42.5705C22.0191 43.9325 22.7288 45.1559 23.7648 46.0267C24.8007 46.8974 26.097 47.36 27.4267 47.3334H54.9667C56.2964 47.36 57.5927 46.8974 58.6287 46.0267C59.6646 45.1559 60.3743 43.9325 60.6334 42.5705L65.1667 17.75H17M28.3334 62.125C28.3334 63.7589 27.0648 65.0834 25.5 65.0834C23.9352 65.0834 22.6667 63.7589 22.6667 62.125C22.6667 60.4912 23.9352 59.1667 25.5 59.1667C27.0648 59.1667 28.3334 60.4912 28.3334 62.125ZM59.5 62.125C59.5 63.7589 58.2315 65.0834 56.6667 65.0834C55.1019 65.0834 53.8334 63.7589 53.8334 62.125C53.8334 60.4912 55.1019 59.1667 56.6667 59.1667C58.2315 59.1667 59.5 60.4912 59.5 62.125Z" stroke="#1E1E1E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="Logout">
+      <a href="homepage.html"><button>LogOut</button></div></a>
+    </nav>
+</header>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class="slider_section">
+      <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <!-- Slide 1 -->
+          <div class="carousel-item active">
+            <div class="slide-content">
+              <div class="text-box">
+                <h1>Go shopping</h1>
+                <p>For fresh and quality farm produce</p>
+              </div>
+              <img src="../Assets/farmer4.jpg" alt="Farmer Image" class="slide-img">
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="carousel-item">
+            <div class="slide-content">
+              <div class="text-box">
+                <h1>Browse Farmers</h1>
+                <p>Explore all the available farmers and their ratings</p>
+              </div>
+              <img src="../Assets/farmer9.jpg" alt="Farmers" class="slide-img">
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="carousel-item">
+            <div class="slide-content">
+              <div class="text-box">
+                <h1>Deals and Promotions</h1>
+                <p>Discover some of today’s greatest deals</p>
+              </div>
+              <img src="../Assets/sale.jpg" alt="Promotions" class="slide-img">
+            </div>
+          </div>
+        </div>
+        <!-- Controls -->
+        <a class="carousel-control-prev" href="#carouselExample" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExample" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </section>
+    
+
+    <!-- end slider section -->
+  </div>
+ 
+  <section class="featured-categories">
+    <h2>Featured Categories</h2>
+    <div class="categories-grid">     
+        <a href="Soko.html?category=fruits" class="category-card">
+            <img src="../Assets/fruitcat.jpg" alt="Fruits">
+            <h3>Fruits</h3>
+        </a>
+        <a href="Soko.html?category=vegetables" class="category-card">
+            <img src="../Assets/vegcat.jpg" alt="Vegetables">
+            <h3>Vegetables</h3>
+        </a>
+        <a href="Soko.html?category=grains" class="category-card">
+            <img src="../Assets/graincat.jpg" alt="Grains">
+            <h3>Grains</h3>
+        </a>
+        <a href="Soko.html?category=dairy" class="category-card">
+            <img src="../Assets/dairycat.jpg" alt="Dairy">
+            <h3>Dairy</h3>
+        </a>
+        <a href="Soko.html?category=livestock" class="category-card">
+            <img src="../Assets/livestockcat.jpg" alt="Livestock">
+            <h3>Livestock</h3>
+        </a>
+    </div>
+</section>
+
+  <!-- shop section -->
+
+  <section class="shop_section">
+    <div class="container">
+      <div class="heading_container">
+        <h2>IN SEASON</h2>
+      </div>
+      <div class="products_grid">
+        <div class="product_card">
+          <a href="#">
+            <div class="new_label">HOT</div>
+            <div class="img-box">
+              <img src="../Assets/tomatoes.jpeg" alt="Product Image">
+            </div>
+            <div class="detail-box">
+              <h6>Tomatoes</h6>
+              <h6>Price <span>Ksh 100 per kg</span></h6>
+            </div>
+          </a>
+        </div>
+  
+        <!-- Repeat for each product -->
+        <div class="product_card">
+          <a href="#">
+            <div class="new_label">HOT</div>
+            <div class="img-box">
+              <img src="../Assets/product3.jpg" alt="Product Image">
+            </div>
+            <div class="detail-box">
+              <h6>Guavas</h6>
+              <h6>Price <span>500 per kg</span></h6>
+            </div>
+          </a>
+        </div>
+        <div class="product_card">
+          <a href="#">
+            <div class="new_label">HOT</div>
+            <div class="img-box">
+              <img src="../Assets/product2.jpg" alt="Product Image">
+            </div>
+            <div class="detail-box">
+              <h6>Pineapples</h6>
+              <h6>Price <span>800 per kg</span></h6>
+            </div>
+          </a>
+        </div>
+       
+  
+        <!-- More products... -->
+      </div>
+      <div class="btn-box">
+        <a href="./Soko.html">View All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="farmers-near-you">
+    <h2>Farmers Near You</h2>
+    <div class="farmers-list">
+        <!-- Sample Farmer Card -->
+        <div class="farmer-card">
+            <img src="../Assets/person2.jpg" alt="Farmer Profile Picture" class="farmer-img">
+            <div class="farmer-info">
+                <h3>John Wambugu</h3>
+                <p class="location">Nakuru, Kenya</p>
+                <div class="rating">
+                    <span class="stars">⭐⭐⭐⭐☆</span> <!-- Replace with dynamic star icons -->
+                    <span class="rating-number">(4.5)</span>
+                </div>
+                <div class="verification">
+                    <span class="badge">✔ Verified</span>
+                </div>
+            </div>
+        </div>
+        <div class="farmer-card">
+          <img src="../Assets/person3.jpg" alt="Farmer Profile Picture" class="farmer-img">
+          <div class="farmer-info">
+              <h3>Peter Hamisi</h3>
+              <p class="location">Nairobi, Kenya</p>
+              <div class="rating">
+                  <span class="stars">⭐⭐⭐⭐☆</span> <!-- Replace with dynamic star icons -->
+                  <span class="rating-number">(4.5)</span>
+              </div>
+              <div class="verification">
+                  <span class="badge">✔ Verified</span>
+              </div>
+          </div>
+      </div>
+      <div class="farmer-card">
+        <img src="../Assets/person5.jpg" alt="Farmer Profile Picture" class="farmer-img">
+        <div class="farmer-info">
+            <h3>Ivy Atieno</h3>
+            <p class="location">Kisumu, Kenya</p>
+            <div class="rating">
+                <span class="stars">⭐⭐⭐☆☆</span> <!-- Replace with dynamic star icons -->
+                <span class="rating-number">(4.5)</span>
+            </div>
+            <div class="verification">
+                <span class="badge">✔ Verified</span>
+            </div>
+        </div>
+    </div>
+        <!-- Repeat farmer cards as needed -->
+    </div>
+</section>
+
+
+
+
+  <h1>Sales and Discounts</h1>
+<p>Shop discounted farm produce items below!</p>
+<section class="discounts-grid">
+<!-- Card for each discounted item -->
+<div class="discount-card">
+  <div class="discount-badge">20% OFF</div>
+  <img src="../Assets/product1.jpg" alt="Product Image">
+  <h3>Fresh Tomatoes</h3>
+  <p class="original-price">20.00ksh</p>
+  <p class="discounted-price">10.00ksh</p>
+  <button class="buy-now">Buy Now</button>
+</div>
+
+<div class="discount-card">
+  <div class="discount-badge">15% OFF</div>
+  <img src="../Assets/carrots.jpg" alt="Product Image">
+  <h3>Carrots</h3>
+  <p class="original-price">30.00ksh</p>
+  <p class="discounted-price">10.00ksh</p>
+  <button class="buy-now">Buy Now</button>
+</div>
+
+
+</section>
+<div class="map-container">
+  <div class="search-box">
+    <input id="search-input" type="text" placeholder="Search for farmers or locations" />
+  </div>
+  <div id="map"></div>
+</div>
+<!-- Load the Google Maps JavaScript API -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+  // Initialize the map
+  const map = L.map("map").setView([0, 0], 2); // Default view before geolocation
+
+  // Use OpenStreetMap tiles
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Geolocation to get the user's current location
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const userLat = position.coords.latitude;
+        const userLng = position.coords.longitude;
+        map.setView([userLat, userLng], 12); // Center the map on the user's location
+
+        // Add a marker for the user's location
+        L.marker([userLat, userLng])
+          .addTo(map)
+          .bindPopup("You are here")
+          .openPopup();
+
+        // Example: Adding markers for nearby farmers
+        const farmers = [
+          { name: "John Wambugu", lat: -1.303193, lng: 36.707308, location: "Nakuru, Kenya" },
+          { name: "Peter Hamisi", lat: -1.286389, lng: 36.817223, location: "Nairobi, Kenya" },
+          { name: "Ivy Atieno", lat: -0.0917, lng: 34.768, location: "Kisumu, Kenya" }
+        ];
+
+        // Loop through the farmers and add markers
+        farmers.forEach((farmer) => {
+          L.marker([farmer.lat, farmer.lng])
+            .addTo(map)
+            .bindPopup(`${farmer.name} - ${farmer.location}`);
+        });
+      },
+      () => {
+        alert("Unable to retrieve your location. Make sure location services are enabled.");
+      }
+    );
+  } else {
+    alert("Geolocation is not supported by your browser.");
+  }
+
+  // Handle search functionality
+  const searchInput = document.getElementById("search-input");
+searchInput.addEventListener("input", () => {
+  const searchTerm = searchInput.value.toLowerCase();
+
+  farmerMarkers.forEach((marker) => {
+    const popupContent = marker.getPopup().getContent().toLowerCase();
+    if (popupContent.includes(searchTerm)) {
+      marker.addTo(map);
+    } else {
+      marker.remove();
+    }
+  });
+});
+
+</script>
+
+<section  id="footer" class="footer">
+  <div class="row">
+      <div class="col">
+          <div class="icon">
+              <img src="../Assets/Green and White Plants Organic Logo.png " alt="logo">
+              <h1>Mazao Hub</h1>
+          </div>
+          <p>Our mission is to connect you with organizations that are committed to making a positive impact.</p>
+          <div class="social-icons">
+              <img src="../Assets/message.png" alt="facebook">
+              <img src="../Assets/twitter.png" alt="twitter">
+              <img src="../Assets/instagram.png" alt="instagram">
+              <img src="../Assets/linkedin.png" alt="linkedin">
+              <img src="../Assets/whatsapp.png" alt="whatsapp">
+          </div>
+      </div>
+      <div class="col">
+          <h3>Quick Links</h3>
+          <div class="footer-lists">
+              <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Organizations</a></li>
+                  <li><a href="#">Blog</a></li>
+              </ul>
+          </div>
+      </div>
+      <div class="col">
+          <h3>Contact</h3>
+          <p>Siwaka Street<br>Nairobi,Kenya 00100<br>Phone: (254)789764534<br>Email: MazaoHub@gmail.com</p>
+      </div>
+      <div class="col">
+          <h3>NewsLetter</h3>
+          <p>Subscribe to our newsletter to stay up-to-date with our latest news.</p>
+          <form>
+              <div class="social-icons">
+                  <img src="../Assets/gmail.png" alt="email" >
+              </div>
+              
+              <input type="email" placeholder="Enter your email" required>
+              <div class="social-icons">
+                  <button type="submit"><img src="../Assets/right.png" alt="send"></button>
+              </div>
+             
+          </form>
+      </div>
+  </div>
+  <hr>
+  <p class="copyright">Mazao Hub &copy; 2023 All rights reserved.</p>
+</section>  
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="../JS files/Buyerspage.js"></script>
+</body>
+
+</html>

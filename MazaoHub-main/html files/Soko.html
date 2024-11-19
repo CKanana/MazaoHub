@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soko - MazaoHub</title>
+  <link rel="stylesheet" href="../CSS files/Soko.css">
+</head>
+<body>
+    <nav>
+        <!-- Logo section -->
+        <div class="icon">
+          <img src="../Assets/Green and White Plants Organic Logo.png" alt="Mazao Hub Logo">
+          <h1>MazaoHub</h1>
+        </div>
+      
+        <!-- Search bar -->
+        <div class="search__container">
+          <input class="search__input" type="text" placeholder="What are you looking for?">
+        </div>
+      
+        <!-- Navigation menu -->
+        <div class="navmenu">
+          <ul>
+            <li><a href="../html files/Soko.html">Soko</a></li>
+            <li><a href="../html files/blog.html">Blog</a></li>
+            <li>
+              <div class="Account"><a href="../html files/Buyer.html">Account
+                <svg width="15" height="15" viewBox="0 0 60 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 15C15 23.27 21.73 30 30 30C38.27 30 45 23.27 45 15C45 6.73 38.27 0 30 0C21.73 0 15 6.73 15 15ZM56.6667 63.3333H60V60C60 47.1367 49.53 36.6667 36.6667 36.6667H23.3333C10.4667 36.6667 0 47.1367 0 60V63.3333H56.6667Z" fill="black"/>
+                </svg>
+              </div></a>
+            </li>
+            <li>
+              <div class="cart"><a href="../html files/Cart.html">Cart
+                <svg width="15" height="15" viewBox="0 0 68 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.83337 2.95837H14.1667L21.76 42.5705C22.0191 43.9325 22.7288 45.1559 23.7648 46.0267C24.8007 46.8974 26.097 47.36 27.4267 47.3334H54.9667C56.2964 47.36 57.5927 46.8974 58.6287 46.0267C59.6646 45.1559 60.3743 43.9325 60.6334 42.5705L65.1667 17.75H17M28.3334 62.125C28.3334 63.7589 27.0648 65.0834 25.5 65.0834C23.9352 65.0834 22.6667 63.7589 22.6667 62.125C22.6667 60.4912 23.9352 59.1667 25.5 59.1667C27.0648 59.1667 28.3334 60.4912 28.3334 62.125ZM59.5 62.125C59.5 63.7589 58.2315 65.0834 56.6667 65.0834C55.1019 65.0834 53.8334 63.7589 53.8334 62.125C53.8334 60.4912 55.1019 59.1667 56.6667 59.1667C58.2315 59.1667 59.5 60.4912 59.5 62.125Z" stroke="#1E1E1E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+              </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="Logout">
+        <a href="homepage.html"><button>LogOut</button></div></a>
+      </nav>
+  <div class="sidebar">
+    <h2 class="sidebar-title">Categories</h2>
+    <ul id="categoryList">
+      <li class="sidebar-item active" onclick="filterByCategory(null)">All</li>
+      <li class="sidebar-item" onclick="filterByCategory('Fruits & Vegetables')">Fruits & Vegetables</li>
+      <li class="sidebar-item" onclick="filterByCategory('Dairy Products')">Dairy Products</li>
+      <li class="sidebar-item" onclick="filterByCategory('Grains')">Grains</li>
+      <li class="sidebar-item" onclick="filterByCategory('Meat & Poultry')">Meat & Poultry</li>
+      <li class="sidebar-item" onclick="filterByCategory('Beverages')">Beverages</li>
+    </ul>
+    <h2 class="sidebar-title">Account</h2>
+    <ul>
+      <li class="sidebar-item"><a href="./BuyersProfile.html">Profile</a></li>
+      <li class="sidebar-item"><a href="./Orderhistory.html">Orders</a></li>
+      <li class="sidebar-item">Wishlist</li>
+      <li class="sidebar-item">Settings</li>
+    </ul>
+  </div>
+
+  <div class="recommend">
+    <h1>Recommended</h1>
+    <div class="recommend-btns">
+      <button>Greens</button>
+      <button>Honey</button>
+      <button>Meat</button>
+      <button>Fruits</button>
+      <button>Fertilizer</button>
+    </div>
+  </div>
+
+  <div class="container" id="productContainer"></div>
+
+  <script>
+ const products = [
+    // Fruits & Vegetables
+    { id: 1, name: "Cabbage", price: 200, rating: 4.5, category: "Fruits & Vegetables", image: "../Assets/cabbage.jpg" },
+    { id: 5, name: "Organic Tomatoes", price: 150, rating: 4.1, category: "Fruits & Vegetables", image: "../Assets/tomatoes.jpeg" },
+    { id: 6, name: "Fresh Carrots", price: 180, rating: 4.3, category: "Fruits & Vegetables", image: "../Assets/carrots.jpg" },
+    { id: 7, name: "Carrots2", price: 600, rating: 4.7, category: "Fruits & Vegetables", image: "../Assets/carrot2.jpg" },
+    { id: 8, name: "White Cabbage", price: 400, rating: 3.8, category: "Fruits & Vegetables", image: "../Assets/whitecabbage.jpg" },
+    { id: 9, name: "Cabbage2", price: 700, rating: 3.0, category: "Fruits & Vegetables", image: "../Assets/cabbage2.jpg" },
+    { id: 10, name: "Carrots3", price: 800, rating: 2.5, category: "Fruits & Vegetables", image: "../Assets/carrot3.jpg" },
+
+    // Dairy Products
+    { id: 2, name: "Eggs", price: 300, rating: 4.2, category: "Dairy Products", image: "../Assets/farmfresheggs.jpg" },
+    { id: 4, name: "Goat Milk", price: 250, rating: 4.4, category: "Dairy Products", image: "../Assets/goatmilk.jpg" },
+    { id: 11, name: "Cheese", price: 500, rating: 4.6, category: "Dairy Products", image: "../Assets/cheese.jpg" },
+
+    // Beverages
+    { id: 3, name: "Honey", price: 500, rating: 4.8, category: "Beverages", image: "../Assets/honeyjar.jpg" },
+    { id: 12, name: "Fresh Juice", price: 120, rating: 4.0, category: "Beverages", image: "../Assets/freshjuice.jpg" },
+
+    // Meat & Poultry
+    { id: 13, name: "Chicken Breast", price: 800, rating: 4.5, category: "Meat & Poultry", image: "../Assets/chickenbreast.jpg" },
+    { id: 14, name: "Lamb Chops", price: 1500, rating: 4.7, category: "Meat & Poultry", image: "../Assets/lambchops.jpg" },
+    { id: 15, name: "Ground Beef", price: 900, rating: 4.2, category: "Meat & Poultry", image: "../Assets/groundbeef.jpg" },
+    { id: 16, name: "Pork Ribs", price: 1000, rating: 4.6, category: "Meat & Poultry", image: "../Assets/porkribs.jpg" }
+];
+
+
+    const productContainer = document.getElementById('productContainer');
+    const searchInput = document.getElementById('searchInput');
+
+    function displayProducts(filteredProducts) {
+  productContainer.innerHTML = '';
+  filteredProducts.forEach(product => {
+    const productCard = document.createElement('div');
+    productCard.className = 'card';
+    
+    productCard.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" class="card-img">
+      <div class="card-details">
+        <h3 class="card-title">${product.name}</h3>
+        <p class="card-description">A high-quality ${product.category.toLowerCase()} product.</p>
+        <div class="reviews-section">${'⭐'.repeat(Math.round(product.rating))} (${product.rating})</div>
+        <section class="card-price">Ksh ${product.price}</section>
+        <button class="view-details-btn" onclick="viewProductDetails(${product.id})">View Details</button>
+        <button class="add-to-cart-btn" type="button" onclick="AddToCart(event)">Add to Cart</button>
+      </div>
+    `;
+
+    productContainer.appendChild(productCard);
+  });
+}
+
+    function filterByCategory(category) {
+      const filteredProducts = products.filter(product => !category || product.category === category);
+      displayProducts(filteredProducts);
+    }
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
+      displayProducts(filteredProducts);
+    });
+
+    displayProducts(products); 
+    function viewProductDetails(productId) {
+  // Navigate to the product detail page (e.g., `/product.html?id=${productId}`)
+  window.location.href = `/product.html?id=${productId}`;
+}
+
+function AddToCart(event) {
+    var button = event.target;
+    var shopItem = button.parentElement.parentElement;
+    var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText;
+    var price = shopItem.getElementsByClassName('shop-item-price')[0].innerText;
+
+    addItemCart(title, price);
+}
+
+// Add item to cart and save in localStorage
+function addItemCart(title, price) {
+    var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Check if item already exists in cart
+    for (var i = 0; i < cartItems.length; i++) {
+        if (cartItems[i].title === title) {
+            alert('This item is already in the cart');
+            return;
+        }
+    }
+
+    // Add new item
+    cartItems.push({ title: title, price: price, quantity: 1 });
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+    alert(`${title} added to cart!`);
+}
+
+  </script>
+</body>
+</html>
