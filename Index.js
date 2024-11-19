@@ -52,18 +52,19 @@ app.get('/signup', (req, res) => res.sendFile(path.join(__dirname, 'signup.html'
 app.get('/SignUpAsBuyer', (req, res) => res.sendFile(path.join(__dirname, 'SignUpAsBuyer.html')));
 app.get('/SignUpAsFarmer', (req, res) => res.sendFile(path.join(__dirname, 'SignUpAsFarmer.html')));
 app.get('/Soko', (req, res) => res.sendFile(path.join(__dirname, 'public' ,'Soko.html')));
+app.get('/Soko2', (req, res) => res.sendFile(path.join(__dirname, 'public' ,'Soko2.html')));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/Assets', express.static(path.join(__dirname, 'Assets')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Set up storage for Multer to save uploaded images
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads');  // Save uploaded files in the 'uploads' folder
+        cb(null, 'uploads');  
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname);  // Unique filename
+        cb(null, Date.now() + '-' + file.originalname);  
     }
 });
 
@@ -71,51 +72,53 @@ const upload = multer({ storage: storage });
 
 // Route to fetch products from the database
 app.get('/api/products', (req, res) => {
-    const query = 'SELECT product_name, caption, price, image_path FROM products';
+    const query = 'SELECT ProductName, Caption, Price, Category, ProductImagePath FROM products';
 
     db.query(query, (err, results) => {
         if (err) {
             console.error('Error fetching products:', err);
             return res.status(500).json({ error: 'Error fetching products' });
         }
-        res.json(results);  // Send the results as a JSON response
+        res.json(results);  
     });
 });
 
-// Serve the form for adding products
+
 app.get('/add-product', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'ProductForm.html'));
 });
 
-// Serve the farmer profile page
+
 app.get('/FarmerProfile', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'FarmerProfile.html'));
 });
 
-// Handle form submission to add products
-app.post('/add-product', upload.single('productImage'), (req, res) => {
-    const { productName, productDescription, hashtags, price } = req.body;
-    const productImage = req.file ? req.file.path : null;  // Image path if file is uploaded
 
-    // Check if any required fields are missing
+app.post('/add-product', upload.single('productImage'), (req, res) => {
+    const { productName, productDescription, hashtags, category, price } = req.body;
+    const productImage = req.file ? req.file.path : null;  
+
+    
     if (!productName || !productDescription || !hashtags || !price || !productImage) {
         return res.status(400).json({ success: false, message: 'All fields are required' });
     }
 
-    // Insert product data into the database
+    // Inserting product data into the database
     const query = `
-        INSERT INTO products (product_name, caption, hashtags, price, image_path)
-        VALUES (?, ?, ?, ?, ?)
+        INSERT INTO products (ProductName, Caption, Hashtags, Category, Price, ProductImagePath)
+        VALUES (?, ?, ?, ?, ?, ?)
     `;
     const values = [
         productName, 
         productDescription, 
         hashtags, 
-        parseFloat(price),  // Ensure price is a number
-        productImage
+        category,
+        parseFloat(price),  
+        productImage,
+        
     ];
 
-    // Execute the query to insert data
+    
     db.execute(query, values, (err, results) => {
         if (err) {
             console.error('Error inserting data:', err);
@@ -125,8 +128,27 @@ app.post('/add-product', upload.single('productImage'), (req, res) => {
         }
     });
 });
+app.post('/register', (req, res) => {
+    const { firstName, lastName, email, password } = req.body;
+  
+   
+    const fullName = `${firstName} ${lastName}`;
+  
+  
+    const hashedPassword = password;
+  
+   
+    const query = 'INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)';
+    
+    db.query(query, [fullName, email, hashedPassword], (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send('Error registering user');
+      }
+      res.status(200).send('User registered successfully');
+    });
+  });
 
-// Serve the main page (e.g., Soko.html)
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'Soko.html'));
 });
