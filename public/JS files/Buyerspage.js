@@ -35,10 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function showSlide(index) {
-    // Remove the active class from the current slide
+  
     slides[currentSlide].classList.remove('active');
 
-    // Update the current slide index
+
     currentSlide = index;
 
     // Add the active class to the new slide
@@ -49,71 +49,60 @@ function showSlide(index) {
 let slideInterval = setInterval(() => {
     let nextSlide = (currentSlide + 1) % slides.length;
     showSlide(nextSlide);
-}, 5000); // Change slide every 5 seconds
+}, 1000); 
 
-// Next and Previous Button Event Listeners
-nextButton.addEventListener('click', () => {
-    clearInterval(slideInterval); // Stop auto-slide on button press
-    let nextSlide = (currentSlide + 1) % slides.length;
-    showSlide(nextSlide);
-});
 
-prevButton.addEventListener('click', () => {
-    clearInterval(slideInterval); // Stop auto-slide on button press
-    let prevSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(prevSlide);
-});
 
-// Sample function to fetch product data from an API
+
 async function fetchProducts() {
-  const apiUrl = 'https://example.com/api/kenya/products'; // Replace with actual API URL
+  const apiUrl = 'https://example.com/api/kenya/products'; 
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
 
     const discountsGrid = document.querySelector('.discounts-grid');
 
-    // Loop through the products and dynamically create the discount cards
+    
     data.products.forEach(product => {
       const card = document.createElement('div');
       card.classList.add('discount-card');
 
-      // Create the discount badge
+     
       const discountBadge = document.createElement('div');
       discountBadge.classList.add('discount-badge');
       discountBadge.textContent = `${product.discount}% OFF`;
       card.appendChild(discountBadge);
 
-      // Create the product image
+    
       const img = document.createElement('img');
-      img.src = product.image_url; // Assuming the API returns image URL
+      img.src = product.image_url; 
       img.alt = product.name;
       card.appendChild(img);
 
-      // Create the product name
+     
       const productName = document.createElement('h3');
       productName.textContent = product.name;
       card.appendChild(productName);
 
-      // Create the original price
+     
       const originalPrice = document.createElement('p');
       originalPrice.classList.add('original-price');
       originalPrice.textContent = `${product.original_price} Ksh`;
       card.appendChild(originalPrice);
 
-      // Create the discounted price
+      
       const discountedPrice = document.createElement('p');
       discountedPrice.classList.add('discounted-price');
       discountedPrice.textContent = `${product.discounted_price} Ksh`;
       card.appendChild(discountedPrice);
 
-      // Create the Buy Now button
+      
       const buyNowButton = document.createElement('button');
       buyNowButton.classList.add('buy-now');
       buyNowButton.textContent = 'Buy Now';
       card.appendChild(buyNowButton);
 
-      // Append the card to the grid
+     
       discountsGrid.appendChild(card);
     });
   } catch (error) {

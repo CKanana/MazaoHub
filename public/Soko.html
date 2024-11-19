@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS files/Soko.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <div class="icon">
+            <img src= "../Assets/Green and White Plants Organic Logo.png"alt="Mazao Hub Logo"/>
+            <h1>MazaoHub</h1>
+        </div>
+        <div class="navmenu">
+            <ul>
+                <li><a href="/homepage.html">Home</a></li>
+                <li><a href="/AboutUs.html">About</a></li>
+                <li><a href="/Soko.html">Soko</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/FAQs.html">FAQs</a></li>
+                <li>
+                    <div class="cart"><a href="/Cart.html">Cart
+                      <svg width="15" height="15" viewBox="0 0 68 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.83337 2.95837H14.1667L21.76 42.5705C22.0191 43.9325 22.7288 45.1559 23.7648 46.0267C24.8007 46.8974 26.097 47.36 27.4267 47.3334H54.9667C56.2964 47.36 57.5927 46.8974 58.6287 46.0267C59.6646 45.1559 60.3743 43.9325 60.6334 42.5705L65.1667 17.75H17M28.3334 62.125C28.3334 63.7589 27.0648 65.0834 25.5 65.0834C23.9352 65.0834 22.6667 63.7589 22.6667 62.125C22.6667 60.4912 23.9352 59.1667 25.5 59.1667C27.0648 59.1667 28.3334 60.4912 28.3334 62.125ZM59.5 62.125C59.5 63.7589 58.2315 65.0834 56.6667 65.0834C55.1019 65.0834 53.8334 63.7589 53.8334 62.125C53.8334 60.4912 55.1019 59.1667 56.6667 59.1667C58.2315 59.1667 59.5 60.4912 59.5 62.125Z" stroke="#1E1E1E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    </a>
+                  </li>
+            </ul>
+        </div>
+        <div class="login">
+           
+            <a href="homepage.html" class="Lbtn">Logout</a>
+        </div>
+    </nav>
+    <div class="sidebar">
+        <h2 class="sidebar-title">Categories</h2>
+        <ul class="sidebar-list">
+            <li class="sidebar-item active">Fruits</li>
+            <li class="sidebar-item">Vegetables</li>
+            <li class="sidebar-item">Dairy </li>
+            <li class="sidebar-item">Grains</li>
+            <li class="sidebar-item">Poultry</li>
+            <li class="sidebar-item">Meat</li>
+        </ul>
+        <h2 class="sidebar-title">Account</h2>
+        <ul class="sidebar-list">
+            <li class="sidebar-item">Profile</li>
+            <li class="sidebar-item"><a href="Orderhistory.html" >Orders</li></a>
+            <li class="sidebar-item">Wishlist</li>
+            <li class="sidebar-item">Settings</li>
+        </ul>
+    </div>
+
+    <div class="recommend">
+        <h1>Recommended</h1>
+        <div class="recommend-btns">
+           
+            <button>Greens</button>
+            <button>Honey</button>
+            <button>Meat</button>
+            <button>Fruits</button>
+            <button>Fertilizer</button>
+
+        </div>
+        </div>
+
+        <div class="container" id="product-container"></div>
+
+        <script>
+            async function loadProducts() {
+    try {
+        const response = await fetch('http://localhost:3000/api/products');
+        const products = await response.json();
+        
+        const productContainer = document.getElementById('product-container');
+        productContainer.innerHTML = '';  
+
+        products.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.classList.add('card');
+            
+            
+            productCard.innerHTML = `
+                <img src="../${product.ProductImagePath}" alt="${product.ProductName}" class="card-img" />
+                <div class="card-details">
+                    <h3 class="card-title">${product.ProductName}</h3>
+                    <p>${product.Caption}</p>
+                    <div class="reviews-section">
+                        <span class="rating">⭐⭐⭐⭐⭐</span>
+                        <span class="total-reviews">(10 reviews)</span>
+                    </div>
+                    <section class="card-price">
+                        <div class="price">Ksh ${product.Price}</div>
+                    </section>
+                    <button class="cartbtn">Add to Cart</button>
+                </div>
+            `;
+            
+           
+            productContainer.appendChild(productCard);
+        });
+
+        
+        const addToCartButtons = document.querySelectorAll('.cartbtn');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', addToCart);
+        });
+
+    } catch (error) {
+        console.error('Error loading products:', error);
+    }
+}
+
+
+function addToCart(event) {
+    alert('You clicked on Add to Cart');
+    const productCard = event.target.closest('.card');  
+    const productId = productCard.dataset.productId;
+    const productName = productCard.querySelector('.card-title').innerText;
+    const productPrice = productCard.querySelector('.price').innerText.replace('Ksh ', '').trim();
+    const productImage = productCard.querySelector('img').src;
+
+
+    const product = {
+        id: productId,
+        name: productName,
+        price: productPrice,
+        image: productImage
+    };
+
+   
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  
+    cart.push(product);
+
+   
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    alert(`${productName} has been added to your cart!`);
+}
+
+
+window.onload = loadProducts;
+         </script>
+</body>
+</html>

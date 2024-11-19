@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mazao hub: Cart-page</title>
-    <link rel="stylesheet" href="../CSS files/Cart.css">
+    <title>Mazao hub: Orderhistory-page</title>
+    <link rel="stylesheet" href="../CSS files/Orderhistory.css">
     <link rel="stylesheet" href="../CSS files/header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -15,70 +15,27 @@
 
 <body>
     <header>
+        <div class="hero">
             <!-- Navigation Menu -->
-            <nav>
-                <div class="icon">
-                    <img src="../Assets/Green and White Plants Organic Logo.png" alt="Mazao Hub Logo">
-                    <h1>MazaoHub</h1>
-                </div>
-                <div class="navmenu">
-                    <ul>
-                        <li><a href="../html files/homepage.html">Home</a></li>
-                        <li><a href="../html files/AboutUs.html">About</a></li>
-                        <li><a href="../html files/Soko.html">Soko</a></li>
-                        <li><a href="../html files/blog.html">Blog</a></li>
-                        <li><a href="../html files/FAQs.html">FAQs</a></li>
-                    </ul>
-                </div>
-                <div class="login">
-                   
-                    <a href="signup.html" class="Lbtn">Login/Signup</a>
-                </div>
-            </nav>
+            
     </header>
-
-    <div class="Order">
-        <div class="Order_space">
-            <p id="empty-cart-message" style="display: none;">You have no orders currently selected into the cart...</p>
-            <section class="container content-section">
-                <div class="cart-row">
-                    <span class="cart-item cart-header cart-column">ITEM</span>
-                    <span class="cart-price cart-header cart-column">PRICE</span>
-                    <span class="cart-quantity cart-header cart-column">QUANTITY</span>
-                </div>
-                <div class="cart-items">
-                    
-                
-                </div>
-                <div class="cart-total">
-                    <strong class="cart-total-title">Total</strong>
-                    <span class="cart-total-price">0.00</span>
-                </div>
-
-            </section>
-            <!-- Checkout button -->
-        </div>
-        </div>
-        <div class="purchase_box">
-            <a href="../Mpesa/index.html"><button class="Checkout-btn" type="button">PURCHASE</button>
-        </div></a>
+    
    
-    <!--<div class="shop-item">
-        <span class="shop-item-title">Maize Bag</span>
-        <div class="shop-item-details">
-            <span class="shop-item-price">Kshs 3000</span>
-            <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+<section id="Orders-sec">
+    <div class="title">
+        <h1>Order History</h1>
         </div>
+        <div class="Orders-inner">
+        <p>No items added to cart yet</p>
+        <a href="../html files/Soko.html"><button id="Soko">Soko</button></a>
     </div>
--->
-
-
-    <!--Footer Section-->
-    <section  id="footer" class="footer">
+</section>
+    <!--Footer section-->
+    <section class="footer" id="footer">
         <div class="row">
             <div class="col">
                 <div class="icon">
-                    <img src="../Assets/Green and White Plants Organic Logo.png " alt="logo">
+                    <img src="../Assets/Green and White Plants Organic Logo.png" alt="logo">
                     <h1>Mazao Hub</h1>
                 </div>
                 <p>Our mission is to connect you with organizations that are committed to making a positive impact.</p>
@@ -96,8 +53,10 @@
                     <ul>
                         <li><a href="#">Home</a></li>
                         <li><a href="#">About</a></li>
+                        <li><a href="#">Causes</a></li>
                         <li><a href="#">Organizations</a></li>
                         <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -110,23 +69,24 @@
                 <p>Subscribe to our newsletter to stay up-to-date with our latest news.</p>
                 <form>
                     <div class="social-icons">
-                        <img src="../Assets/gmail.png" alt="email" >
+                        <img src="../Assets/gmail.png" alt="email">
                     </div>
-                    
+
                     <input type="email" placeholder="Enter your email" required>
                     <div class="social-icons">
                         <button type="submit"><img src="../Assets/right.png" alt="send"></button>
                     </div>
-                   
+
                 </form>
             </div>
         </div>
         <hr>
         <p class="copyright">Mazao Hub &copy; 2023 All rights reserved.</p>
-    </section>  
-    </div>
-</body>
-<script src="../JS files/Cart.js"></script>
+    </section>
 
+
+</body>
+<script src="../JS files/Header.js"></script>
+<script src="../JS files/Orderhistory.js"></script>
 
 </html>
