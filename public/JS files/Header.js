@@ -13,7 +13,7 @@ function createHeader() {
                         <ul>
                             <li><a href="homepage.html">Home</a></li>
                             <li><a href="AboutUs.html">About</a></li>
-                            <li><a href="Soko.html">Soko</a></li>
+                            <li><a href="Soko2.html">Soko</a></li>
                             <li><a href="blog.html">Blog</a></li>
                             <li><a href="FAQs.html">FAQs</a></li>
                         </ul>

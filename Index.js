@@ -53,6 +53,7 @@ app.get('/SignUpAsBuyer', (req, res) => res.sendFile(path.join(__dirname, 'SignU
 app.get('/SignUpAsFarmer', (req, res) => res.sendFile(path.join(__dirname, 'SignUpAsFarmer.html')));
 app.get('/Soko', (req, res) => res.sendFile(path.join(__dirname, 'public' ,'Soko.html')));
 app.get('/Soko2', (req, res) => res.sendFile(path.join(__dirname, 'public' ,'Soko2.html')));
+app.get('/Mpesa', (req, res) => res.sendFile(path.join(__dirname, 'public' ,'Mpesa.html')));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/Assets', express.static(path.join(__dirname, 'Assets')));
