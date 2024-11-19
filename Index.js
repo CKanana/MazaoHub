@@ -4,7 +4,7 @@ const multer = require('multer');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
-
+const bcrypt = require('bcrypt');
 // Initialize the Express app
 const app = express();
 const port = 3000;
@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
 app.get('/AboutUs', (req, res) => res.sendFile(path.join(__dirname, 'AboutUs.html')));
 app.get('/blog', (req, res) => res.sendFile(path.join(__dirname, 'blog.html')));
 app.get('/Buyer', (req, res) => res.sendFile(path.join(__dirname, 'Buyer.html')));
-app.get('/BuyersProfile', (req, res) => res.sendFile(path.join(__dirname, 'BuyersProfile.html')));
+app.get('/BuyersProfile', (req, res) => res.sendFile(path.join(__dirname,'public', 'BuyersProfile.html')));
 app.get('/Cart', (req, res) => res.sendFile(path.join(__dirname, 'Cart.html')));
 app.get('/FAQs', (req, res) => res.sendFile(path.join(__dirname, 'FAQs.html')));
 app.get('/Farmer', (req, res) => res.sendFile(path.join(__dirname, 'Farmer.html')));
@@ -129,31 +129,124 @@ app.post('/add-product', upload.single('productImage'), (req, res) => {
         }
     });
 });
-app.post('/register', (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
-  
-   
-    const fullName = `${firstName} ${lastName}`;
-  
-  
-    const hashedPassword = password;
-  
-   
-    const query = 'INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)';
-    
-    db.query(query, [fullName, email, hashedPassword], (err, result) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).send('Error registering user');
-      }
-      res.status(200).send('User registered successfully');
+// Registration Endpoint
+app.post('/register', async (req, res) => {
+    const { firstname, lastname, username, email, password } = req.body;
+
+    if (!firstname || !lastname || !username || !email || !password) {
+        return res.status(400).send('All fields are required.');
+    }
+
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const query = 'INSERT INTO buyers (firstname, lastname, Username, email, password) VALUES (?, ?, ?, ?, ?)';
+        db.query(query, [firstname, lastname, Username, email, hashedPassword], (err, result) => {
+            if (err) {
+                console.error('Database error:', err);
+
+                if (err.code === 'ER_DUP_ENTRY') {
+                    res.status(400).send('Email already registered.');
+                } else {
+                    res.status(500).send('Database error.');
+                }
+            } else {
+                return res.redirect(302, `/BuyersProfile?message=${encodeURIComponent('Registration successful!')}`);
+               
+            }
+        });
+    } catch (error) {
+        console.error('Hashing or server error:', error);
+        res.status(500).send('Server error.');
+    }
+});
+// Login Endpoint
+app.post('/login', (req, res) => {
+    const { username_or_email, password } = req.body;
+
+    const query = 'SELECT * FROM buyers WHERE email = ?';
+    db.query(query, [username_or_email], async (err, results) => {
+        if (err) {
+            res.status(500).send('Database error.');
+        } else if (results.length === 0) {
+            res.status(400).send('User not found.');
+        } else {
+            const user = results[0];
+            const isMatch = await bcrypt.compare(password, user.password);
+
+            if (isMatch) {
+                res.send('Login successful!');
+            } else {
+                res.status(401).send('Invalid password.');
+            }
+        }
     });
-  });
+});
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'Soko.html'));
 });
+//name display
+app.get('/dashboard', (req, res) => {
+    const userName = req.first.name; 
+    res.render('dashboard', { userName }); 
+});
+app.post('/registerfarmer', async (req, res) => {
+    const { firstname, lastname, username, email, password } = req.body;
 
+    if (!firstname || !lastname || !username || !email || !password) {
+        return res.status(400).send('All fields are required.');
+    }
+
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const query = 'INSERT INTO farmers (firstname, lastname, Username, email, password) VALUES (?, ?, ?, ?, ?)';
+        db.query(query, [firstname, lastname, username, email, hashedPassword], (err, result) => {
+            if (err) {
+                console.error('Database error:', err);
+
+                if (err.code === 'ER_DUP_ENTRY') {
+                    res.status(400).send('Email already registered.');
+                } else {
+                    res.status(500).send('Database error.');
+                }
+            } else {
+                return res.redirect(302, `/FarmerProfile?message=${encodeURIComponent('Registration successful!')}`);
+               
+            }
+        });
+    } catch (error) {
+        console.error('Hashing or server error:', error);
+        res.status(500).send('Server error.');
+    }
+});
+// Login Endpoint
+app.post('/login', (req, res) => {
+    const { username_or_email, password } = req.body;
+
+    const query = 'SELECT * FROM farmers WHERE email = ?';
+    db.query(query, [username_or_email], async (err, results) => {
+        if (err) {
+            res.status(500).send('Database error.');
+        } else if (results.length === 0) {
+            res.status(400).send('User not found.');
+        } else {
+            const user = results[0];
+            const isMatch = await bcrypt.compare(password, user.password);
+
+            if (isMatch) {
+                res.send('Login successful!');
+            } else {
+                res.status(401).send('Invalid password.');
+            }
+        }
+    });
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'Soko.html'));
+});
 // Start the Express server
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
