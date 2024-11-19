@@ -13,7 +13,7 @@ function startCarouselAutoplay() {
     // Remove active class from current slide and add to the next slide
     activeSlide.classList.remove('active');
     nextSlide.classList.add('active');
-  }, 5000); // Adjust delay as needed
+  }, 9000); // Adjust delay as needed
 }
 
 function stopCarouselAutoplay() {
@@ -49,7 +49,7 @@ function showSlide(index) {
 let slideInterval = setInterval(() => {
     let nextSlide = (currentSlide + 1) % slides.length;
     showSlide(nextSlide);
-}, 1000); 
+}, 5000); 
 
 
 
