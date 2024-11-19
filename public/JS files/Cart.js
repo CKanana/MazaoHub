@@ -4,30 +4,29 @@ document.addEventListener('DOMContentLoaded', function () {
     const emptyCartMessage = document.getElementById('empty-cart-message');
     const purchaseButton = document.querySelector('.Checkout-btn');
 
-    // Retrieve cart items from localStorage
+    
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Function to display cart items
+    
     function displayCartItems() {
-        cartContainer.innerHTML = ''; // Clear the current items in the cart
+        cartContainer.innerHTML = '';
 
-        // Check if the cart is empty
         if (cart.length === 0) {
             emptyCartMessage.style.display = 'block';
-            purchaseButton.style.display = 'none'; // Hide the checkout button if cart is empty
+            purchaseButton.style.display = 'none';
+            totalPriceElement.innerText = 'Ksh 0.00';
         } else {
             emptyCartMessage.style.display = 'none';
-            purchaseButton.style.display = 'block'; // Show the checkout button if cart has items
+            purchaseButton.style.display = 'block';
 
-            // Loop through the cart and create HTML for each item
             let totalPrice = 0;
 
             cart.forEach(item => {
-                // Create cart item div
+                console.log('Processing item:', item);
+
                 const cartItem = document.createElement('div');
                 cartItem.classList.add('cart-row');
 
-                // Add product details to the cart item div
                 cartItem.innerHTML = `
                     <div class="cart-item cart-column">
                         <img src="${item.image}" width="100" alt="${item.name}">
@@ -35,42 +34,103 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                     <span class="cart-price cart-column">Ksh ${item.price}</span>
                     <div class="cart-quantity cart-column">
-                        <button class="remove-item" data-id="${item.id}">Remove</button>
+                        <input class="cart-quantity-input" type="number" value="${item.quantity}" min="1" data-id="${item.id}">
+                        <button class="btn-danger" type="button" data-id="${item.id}">REMOVE</button>
                     </div>
                 `;
-                // Append the item to the cart container
+
                 cartContainer.appendChild(cartItem);
 
-                // Add to total price
-                totalPrice += parseFloat(item.price);
+                
+                const price = parseFloat(item.price);
+                const quantity = parseInt(item.quantity, 10);
+                if (!isNaN(price) && !isNaN(quantity)) {
+                    totalPrice += price * quantity;
+                } else {
+                    console.error('Invalid price or quantity:', item);
+                }
             });
 
-            // Update the total price
-            totalPriceElement.innerText = totalPrice.toFixed(2);
+            
+            console.log('Total Price Calculated:', totalPrice);
+            totalPriceElement.innerText = 'Ksh ' + totalPrice.toFixed(2);
         }
     }
 
-    // Function to remove an item from the cart
-    function removeItemFromCart(event) {
-        const productId = event.target.dataset.id;
+    
+    function updateTotal() {
+        let totalPrice = 0;
+
+        cart.forEach(item => {
+            const price = parseFloat(item.price);
+            const quantity = parseInt(item.quantity, 10);
+            if (!isNaN(price) && !isNaN(quantity)) {
+                totalPrice += price * quantity;
+            }
+        });
+
+        totalPriceElement.innerText = 'Ksh ' + totalPrice.toFixed(2);
+    }
+
+    function changedQuantity(event) {
+        const input = event.target;
+        const itemId = input.getAttribute('data-id');
+        const newQuantity = parseInt(input.value, 10) || 1;
+
         
-        // Remove item from the cart array
-        cart = cart.filter(item => item.id !== productId);
-        
-        // Save the updated cart in localStorage
+        cart = cart.map(item => {
+            if (item.id === itemId) {
+                item.quantity = newQuantity > 0 ? newQuantity : 1;
+            }
+            return item;
+        });
+
         localStorage.setItem('cart', JSON.stringify(cart));
+        updateTotal();
+    }
+
+    
+    function removeItem(event) {
+        const itemId = event.target.getAttribute('data-id');
+
         
-        // Re-render the cart
+        cart = cart.filter(item => item.id !== itemId);
+
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
         displayCartItems();
     }
 
-    // Add event listeners for remove buttons
+    
     cartContainer.addEventListener('click', function (event) {
-        if (event.target.classList.contains('remove-item')) {
-            removeItemFromCart(event);
+        if (event.target.classList.contains('btn-danger')) {
+            removeItem(event);
         }
     });
 
-    // Call the function to display the items on page load
+    cartContainer.addEventListener('input', function (event) {
+        if (event.target.classList.contains('cart-quantity-input')) {
+            changedQuantity(event);
+        }
+    });
+
+    
+    function completePurchase() {
+        const orderDetails = cart.map(item => ({
+            title: item.name,
+            price: item.price,
+            quantity: item.quantity
+        }));
+
+        
+        localStorage.setItem('orderHist', JSON.stringify(orderDetails));
+        localStorage.removeItem('cart'); 
+        window.location.href = 'Orderhistory.html';
+    }
+
+
+    purchaseButton.addEventListener('click', completePurchase);
+
+    
     displayCartItems();
 });
