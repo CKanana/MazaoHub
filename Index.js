@@ -140,8 +140,8 @@ app.post('/register', async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const query = 'INSERT INTO buyers (firstname, lastname, Username, email, password) VALUES (?, ?, ?, ?, ?)';
-        db.query(query, [firstname, lastname, Username, email, hashedPassword], (err, result) => {
+        const query = 'INSERT INTO buyers (firstname, lastname, username, email, password) VALUES (?, ?, ?, ?, ?)';
+        db.query(query, [firstname, lastname, username, email, hashedPassword], (err, result) => {
             if (err) {
                 console.error('Database error:', err);
 
@@ -175,9 +175,11 @@ app.post('/login', (req, res) => {
             const isMatch = await bcrypt.compare(password, user.password);
 
             if (isMatch) {
-                res.send('Login successful!');
+                return res.redirect(302, `/BuyersProfile?message=${encodeURIComponent('Registration successful!')}`);
+
             } else {
-                res.status(401).send('Invalid password.');
+                return res.redirect(302, `/SignUpAsBuyer?message=${encodeURIComponent('Registration successful!')}`);
+
             }
         }
     });
@@ -236,9 +238,9 @@ app.post('/login', (req, res) => {
             const isMatch = await bcrypt.compare(password, user.password);
 
             if (isMatch) {
-                res.send('Login successful!');
+                return res.redirect(302, `/FarmerProfile?message=${encodeURIComponent('Registration successful!')}`);
             } else {
-                res.status(401).send('Invalid password.');
+                return res.redirect(302, `/SignUpAsFarmer?message=${encodeURIComponent('Registration successful!')}`);
             }
         }
     });
