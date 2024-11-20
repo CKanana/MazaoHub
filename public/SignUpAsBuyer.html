@@ -137,9 +137,9 @@
         function signIn() {
             const auth2 = window.gapi.auth2.getAuthInstance();
             auth2.signIn().then(function (googleUser) {
-                // Handle successful sign-in
+               
                 const profile = googleUser.getBasicProfile();
-                // Access user information like profile.getName(), profile.getEmail(), etc.
+               
             });
         }
     </script>
