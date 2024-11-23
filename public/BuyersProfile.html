@@ -17,20 +17,20 @@
 <header>
 <body> 
   
-    <!-- header section starts -->
+    
     <nav>
-      <!-- Logo section -->
+     
       <div class="icon">
         <img src="../Assets/Green and White Plants Organic Logo.png" alt="Mazao Hub Logo">
         <h1>MazaoHub</h1>
       </div>
     
-      <!-- Search bar -->
+      
       <div class="search__container">
         <input class="search__input" type="text" placeholder="What are you looking for?">
       </div>
     
-      <!-- Navigation menu -->
+     
       <div class="navmenu">
         <ul>
           <li><a href="/Soko.html">Soko</a></li>
@@ -56,8 +56,7 @@
       <a href="/homepage.html"><button>LogOut</button></div></a>
     </nav>
 </header>
-    <!-- end header section -->
-    <!-- slider section -->
+   
     <section class="slider_section">
       <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -65,7 +64,7 @@
           <div class="carousel-item active">
             <div class="slide-content">
               <div class="text-box">
-                <h1>Welcome Lillian!</h1>
+                <h1 id="welcome-message">Welcome User</h1>
                 <h2>Go shopping </h2>
                 <p>For fresh and quality farm produce</p>
               </div>
@@ -76,7 +75,7 @@
           <div class="carousel-item">
             <div class="slide-content">
               <div class="text-box">
-                <h1>Welcome Lillian!</h1>
+                <h1 id="welcome-message">Welcome User</h1>
                 <h2>Browse Farmers</h2>
                 <p>Explore all the available farmers and their ratings</p>
               </div>
@@ -87,7 +86,7 @@
           <div class="carousel-item">
             <div class="slide-content">
               <div class="text-box">
-                <h1>Welcome Lilian!</h1>
+                <h1 id="welcome-message">Welcome User</h1>
                 <h2>Deals and Promotions</h2>
                 <p>Discover some of today’s greatest deals</p>
               </div>
@@ -100,7 +99,7 @@
     </section>
     
 
-    <!-- end slider section -->
+   
   </div>
  
   <section class="featured-categories">
@@ -128,7 +127,7 @@
         </div>
     </div>
 </section>
-  <!-- shop section -->
+  
 
   <section class="shop_section">
     <div class="container">
@@ -149,7 +148,7 @@
           </a>
         </div>
   
-        <!-- Repeat for each product -->
+        
         <div class="product_card">
           <a href="#">
             <div class="new_label">HOT</div>
@@ -176,7 +175,7 @@
         </div>
        
   
-        <!-- More products... -->
+      
       </div>
       <div class="btn-box">
         <a href="#">View All Products</a>
@@ -187,14 +186,14 @@
   <section class="farmers-near-you">
     <h2>Farmers Near You</h2>
     <div class="farmers-list">
-        <!-- Sample Farmer Card -->
+      
         <div class="farmer-card">
             <img src="../Assets/person2.jpg" alt="Farmer Profile Picture" class="farmer-img">
             <div class="farmer-info">
                 <h3>John Wambugu</h3>
                 <p class="location">Nakuru, Kenya</p>
                 <div class="rating">
-                    <span class="stars">⭐⭐⭐⭐☆</span> <!-- Replace with dynamic star icons -->
+                    <span class="stars">⭐⭐⭐⭐☆</span> 
                     <span class="rating-number">(4.5)</span>
                 </div>
                 <div class="verification">
@@ -208,7 +207,7 @@
               <h3>Peter Hamisi</h3>
               <p class="location">Nairobi, Kenya</p>
               <div class="rating">
-                  <span class="stars">⭐⭐⭐⭐☆</span> <!-- Replace with dynamic star icons -->
+                  <span class="stars">⭐⭐⭐⭐☆</span> 
                   <span class="rating-number">(4.5)</span>
               </div>
               <div class="verification">
@@ -222,7 +221,7 @@
             <h3>Ivy Atieno</h3>
             <p class="location">Kisumu, Kenya</p>
             <div class="rating">
-                <span class="stars">⭐⭐⭐☆☆</span> <!-- Replace with dynamic star icons -->
+                <span class="stars">⭐⭐⭐☆☆</span> 
                 <span class="rating-number">(4.5)</span>
             </div>
             <div class="verification">
@@ -230,7 +229,7 @@
             </div>
         </div>
     </div>
-        <!-- Repeat farmer cards as needed -->
+      
     </div>
 </section>
 
@@ -240,7 +239,7 @@
   <h1>Sales and Discounts</h1>
 <p>Shop discounted farm produce items below!</p>
 <section class="discounts-grid">
-<!-- Card for each discounted item -->
+
 <div class="discount-card">
   <div class="discount-badge">20% OFF</div>
   <img src="../Assets/product1.jpg" alt="Product Image">
@@ -267,40 +266,40 @@
   </div>
   <div id="map"></div>
 </div>
-<!-- Load the Google Maps JavaScript API -->
+
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script>
-  // Initialize the map
-  const map = L.map("map").setView([0, 0], 2); // Default view before geolocation
+ 
+  const map = L.map("map").setView([0, 0], 2); 
 
-  // Use OpenStreetMap tiles
+ 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution: '© OpenStreetMap contributors'
   }).addTo(map);
 
-  // Geolocation to get the user's current location
+ 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const userLat = position.coords.latitude;
         const userLng = position.coords.longitude;
-        map.setView([userLat, userLng], 12); // Center the map on the user's location
+        map.setView([userLat, userLng], 12); 
 
-        // Add a marker for the user's location
+        
         L.marker([userLat, userLng])
           .addTo(map)
           .bindPopup("You are here")
           .openPopup();
 
-        // Example: Adding markers for nearby farmers
+       
         const farmers = [
           { name: "John Wambugu", lat: -1.303193, lng: 36.707308, location: "Nakuru, Kenya" },
           { name: "Peter Hamisi", lat: -1.286389, lng: 36.817223, location: "Nairobi, Kenya" },
           { name: "Ivy Atieno", lat: -0.0917, lng: 34.768, location: "Kisumu, Kenya" }
         ];
 
-        // Loop through the farmers and add markers
+       
         farmers.forEach((farmer) => {
           L.marker([farmer.lat, farmer.lng])
             .addTo(map)
@@ -315,7 +314,7 @@
     alert("Geolocation is not supported by your browser.");
   }
 
-  // Handle search functionality
+
   const searchInput = document.getElementById("search-input");
 searchInput.addEventListener("input", () => {
   const searchTerm = searchInput.value.toLowerCase();
@@ -382,9 +381,9 @@ searchInput.addEventListener("input", () => {
   <hr>
   <p class="copyright">Mazao Hub &copy; 2023 All rights reserved.</p>
 </section>  
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Bootstrap JavaScript -->
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script src="../JS files/Buyerspage.js"></script>
 </body>

@@ -34,64 +34,56 @@
                     <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
                     <header>Login</header>
                 </div>
-                <div class="input-box">
-                    <input type="text" class="input-field" placeholder="Username or Email">
-                    <i class="bx bx-user"></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" class="input-field" placeholder="Password">
-                    <i class="bx bx-lock-alt"></i>
-                </div>
-                <div class="input-box">
-                    <a href="/FarmerProfile.html"><input type="submit" class="submit" value="Sign In"></a>
-                </div>
-                <div class="two-col">
-                    <div class="one">
-                        <input type="checkbox" id="login-check">
-                        <label for="login-check"> Remember Me</label>
+                <form action="/login" method="POST">
+                    <div class="input-box">
+                        <input type="text" name="username_or_email" class="input-field" placeholder="Username or Email" required>
+                        <i class="bx bx-user"></i>
                     </div>
-                    <div class="two">
-                        <label><a href="#">Forgot password?</a></label>
+                    <div class="input-box">
+                        <input type="password" name="password" class="input-field" placeholder="Password" required>
+                        <i class="bx bx-lock-alt"></i>
                     </div>
-                </div>
+                    <div class="input-box">
+                        <input type="submit" class="submit" value="Sign In">
+                    </div>
+                </form>
             </div>
 
             <!------------------- registration form -------------------------->
             <div class="register-container" id="register">
-                <div class="top">
-                    <span>Have an account? <a href="#" onclick="login()">Login</a></span>
-                    <header>Sign Up</header>
-                </div>
-                <div class="two-forms">
-                    <div class="input-box">
-                        <input type="text" class="input-field" placeholder="Firstname">
-                        <i class="bx bx-user"></i>
-                    </div>
-                    <div class="input-box">
-                        <input type="text" class="input-field" placeholder="Lastname">
-                        <i class="bx bx-user"></i>
-                    </div>
-                </div>
-                <div class="input-box">
-                    <input type="text" class="input-field" placeholder="Email">
-                    <i class="bx bx-envelope"></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" class="input-field" placeholder="Password">
-                    <i class="bx bx-lock-alt"></i>
-                </div>
-                <div class="input-box">
-                    <a href="/FarmerProfile.html"><input type="submit" class="submit" value="Register"></a>
-                </div>
-
-
-
+    <div class="top">
+        <span>Have an account? <a href="#" onclick="login()">Login</a></span>
+        <header>Sign Up</header>
+    </div>
+    <form action="/registerfarmer" method="POST">
+        <div class="two-forms">
+            <div class="input-box">
+                <input type="text" name="firstname" class="input-field" placeholder="Firstname" required>
+                <i class="bx bx-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="text" name="lastname" class="input-field" placeholder="Lastname" required>
+                <i class="bx bx-user"></i>
             </div>
         </div>
-    </div>
-    </div>
-
-
+       
+        <div class="input-box">
+            <input type="text" name="username" class="input-field" placeholder="Username" required>
+            <i class="bx bx-user"></i>
+        </div>
+        <div class="input-box">
+            <input type="email" name="email" class="input-field" placeholder="Email" required>
+            <i class="bx bx-envelope"></i>
+        </div>
+        <div class="input-box">
+            <input type="password" name="password" class="input-field" placeholder="Password" required>
+            <i class="bx bx-lock-alt"></i>
+        </div>
+        <div class="input-box">
+            <input type="submit" class="submit" value="Register">
+        </div>
+    </form>
+</div>
     <script>
 
         function myMenuFunction() {
@@ -105,8 +97,11 @@
         }
 
     </script>
-
     <script>
+
+     
+
+    
 
         var a = document.getElementById("loginBtn");
         var b = document.getElementById("registerBtn");
@@ -145,9 +140,9 @@
         function signIn() {
             const auth2 = window.gapi.auth2.getAuthInstance();
             auth2.signIn().then(function (googleUser) {
-                // Handle successful sign-in
+               
                 const profile = googleUser.getBasicProfile();
-                // Access user information like profile.getName(), profile.getEmail(), etc.
+              
             });
         }
     </script>
