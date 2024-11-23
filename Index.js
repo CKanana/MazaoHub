@@ -139,7 +139,58 @@ app.post('/register', async (req, res) => {
         res.status(500).send('Server error.');
     }
 });
+app.post('/registerfarmer', async (req, res) => {
+    const { firstname, lastname, username, email, password } = req.body;
 
+    if (!firstname || !lastname || !username || !email || !password) {
+        return res.status(400).send('All fields are required.');
+    }
+
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const query = 'INSERT INTO farmers (firstname, lastname, Username, email, password) VALUES (?, ?, ?, ?, ?)';
+        db.query(query, [firstname, lastname, username, email, hashedPassword], (err, result) => {
+            if (err) {
+                console.error('Database error:', err);
+
+                if (err.code === 'ER_DUP_ENTRY') {
+                    res.status(400).send('Email already registered.');
+                } else {
+                    res.status(500).send('Database error.');
+                }
+            } else {
+                return res.redirect(302, `/FarmerProfile?message=${encodeURIComponent('Registration successful!')}`);
+               
+            }
+        });
+    } catch (error) {
+        console.error('Hashing or server error:', error);
+        res.status(500).send('Server error.');
+    }
+});
+// Login Endpoint
+app.post('/login', (req, res) => {
+    const { username_or_email, password } = req.body;
+
+    const query = 'SELECT * FROM farmers WHERE email = ?';
+    db.query(query, [username_or_email], async (err, results) => {
+        if (err) {
+            res.status(500).send('Database error.');
+        } else if (results.length === 0) {
+            res.status(400).send('User not found.');
+        } else {
+            const user = results[0];
+            const isMatch = await bcrypt.compare(password, user.password);
+
+            if (isMatch) {
+                return res.redirect(302, `/FarmerProfile?message=${encodeURIComponent('Login successful!')}`);
+            } else {
+                return res.redirect(302, `/SignUpAsFarmer?message=${encodeURIComponent('Registration successful!')}`);
+            }
+        }
+    });
+});
 
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
