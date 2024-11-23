@@ -218,7 +218,7 @@ app.post('/addReview', (req, res) => {
 
 app.get('/reviews/:product_id', (req, res) => {
     const { product_id } = req.params;
-    const query = 'SELECT * FROM reviews WHERE product_id = ?';
+    const query = 'SELECT * FROM reviews WHERE product_id = ? ';
 
     db.query(query, [product_id], (err, results) => {
         if (err) {
