@@ -1,19 +1,5 @@
 {
   "dependencies": {
-<<<<<<< HEAD
-    "axios": "^1.7.7",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.1",
-    "ngrok": "^5.0.0-beta.2"
-  }
-  {
-    "type": "module",
-    "scripts": {
-      "start": "node server.js"
-    }
-  
-=======
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
@@ -36,5 +22,4 @@
   "keywords": [],
   "author": "",
   "license": "ISC"
->>>>>>> 022f96a9c1da1e7311f0e499865a6a6244d6e55d
 }
