@@ -19,10 +19,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 const db = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'mazaohub',
+    host: process.env.DB_HOST || '127.0.0.1',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
+    database: process.env.DB_NAME || 'mazaohub',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
@@ -61,7 +61,8 @@ const htmlRoutes = [
     { path: '/Soko2', file: 'Soko2.html' },
     { path: '/Mpesa', file: 'Mpesa.html' },
     { path: '/FarmerProfile', file: 'FarmerProfile.html' },
-    { path: '/add-product', file: 'ProductForm.html' }
+    { path: '/add-product', file: 'ProductForm.html' },
+    { path: '/reviewform', file: 'reviewform.html' }
 ];
 
 htmlRoutes.forEach(route => {
@@ -80,7 +81,7 @@ const upload = multer({ storage });
 
 
 app.get('/api/products', (req, res) => {
-    const query = 'SELECT ProductName, Caption, Price, Category, ProductImagePath FROM products';
+    const query = 'SELECT product_name, caption, price, category, product_image FROM products';
     db.query(query, (err, results) => {
         if (err) {
             console.error('Error fetching products:', err);
@@ -99,7 +100,7 @@ app.post('/add-product', upload.single('productImage'), (req, res) => {
     }
 
     const query = `
-        INSERT INTO products (ProductName, Caption, Hashtags, Category, Price, ProductImagePath)
+        INSERT INTO products (product_name, caption, hashtags, category, price, product_image)
         VALUES (?, ?, ?, ?, ?, ?)
     `;
     const values = [productName, productDescription, hashtags, category, parseFloat(price), productImage];
@@ -189,6 +190,45 @@ app.post('/login', (req, res) => {
                 return res.redirect(302, `/SignUpAsFarmer?message=${encodeURIComponent('Registration successful!')}`);
             }
         }
+    });
+});
+const reviews = []; 
+
+
+app.post('/addReview', (req, res) => {
+    const { buyer_id, product_id, rating, comment } = req.body;
+
+    if (!buyer_id || !product_id || !rating || rating < 1 || rating > 5 || !comment) {
+        return res.status(400).json({ error: 'Invalid input' });
+    }
+
+    const query = `
+        INSERT INTO reviews (buyer_id, product_id, rating, comment)
+        VALUES (?, ?, ?, ?)
+    `;
+    db.query(query, [buyer_id, product_id, rating, comment], (err, result) => {
+        if (err) {
+            console.error('Error inserting review:', err);
+            return res.status(500).json({ error: 'Failed to add review' });
+        }
+        res.status(201).json({ message: 'Review added successfully' });
+    });
+});
+
+
+app.get('/reviews/:product_id', (req, res) => {
+    const { product_id } = req.params;
+    const query = 'SELECT * FROM reviews WHERE product_id = ?';
+
+    db.query(query, [product_id], (err, results) => {
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).json({ error: 'Database error' });
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ error: 'No reviews found for this product.' });
+        }
+        res.json(results);
     });
 });
 

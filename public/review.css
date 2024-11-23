@@ -1,0 +1,83 @@
+#review-section {
+    margin: 100px;
+    font-family: Arial, sans-serif;
+    border: #2c3e50;
+}
+
+#review-section h3, 
+#review-section h4 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+#reviews-list {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#reviews-list div {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+#reviews-list div:last-child {
+    border-bottom: none;
+}
+
+
+#reviewForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 300px;
+}
+
+#reviewForm label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #34495e;
+}
+
+#reviewForm input[type="number"],
+#reviewForm textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #555;
+    resize: vertical;
+}
+
+#reviewForm input[type="number"]:focus,
+#reviewForm textarea:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 3px rgba(52, 152, 219, 0.5);
+}
+
+#reviewForm button {
+    padding: 10px;
+    background-color:rgb(7, 71, 7);
+    color: white;
+    font-size: 14px;
+    border: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#reviewForm button:hover {
+    background-color: #2980b9;
+}

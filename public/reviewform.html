@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="review.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="review-section">
+        <h3>Product Reviews</h3>
+        <div id="reviews-list"></div>
+    
+        <h4>Add a Review</h4>
+        <form id="reviewForm">
+            <label for="rating">Rating (1-5):</label>
+            <input type="number" id="rating" min="1" max="5" required>
+            
+            <label for="comment">Comment:</label>
+            <textarea id="comment" required></textarea>
+            
+            <button type="submit">Submit Review</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const rating = document.getElementById('rating').value;
+    const comment = document.getElementById('comment').value;
+
+    try {
+        const response = await fetch('/addReview', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ buyer_id, product_id, rating, comment }),
+        });
+
+        if (response.ok) {
+            alert('Review added successfully!');
+            fetchReviews(); 
+            e.target.reset();
+        } else {
+            const error = await response.json();
+            alert(error.error || 'Failed to add review.');
+        }
+    } catch (err) {
+        console.error('Error submitting review:', err);
+        alert('Something went wrong!');
+    }
+});
+
+
+
+
+const product_id = "1"; 
+const buyer_id = "11"; 
+
+
+async function fetchReviews() {
+    const response = await fetch(`/reviews/${product_id}`); 
+    const reviews = await response.json();
+
+    const reviewsList = document.getElementById('reviews-list');
+    reviewsList.innerHTML = '';
+
+    reviews.forEach((review) => {
+        const reviewElement = document.createElement('div');
+        reviewElement.innerHTML = `
+            <p><strong>Rating:</strong> ${review.rating}/5</p>
+            <p>${review.comment}</p>
+            <small>Posted on ${new Date(review.timestamp).toLocaleString()}</small>
+        `;
+        reviewsList.appendChild(reviewElement);
+    });
+}
+fetchReviews();
+    </script>
+</body>
+</html>
