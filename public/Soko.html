@@ -87,14 +87,18 @@
                 <div class="card-details">
                     <h3 class="card-title">${product.product_name}</h3>
                     <p>${product.caption}</p>
+                    
                     <div class="reviews-section">
                         <span class="rating">⭐⭐⭐⭐⭐</span>
-                        <span class="total-reviews">(10 reviews)</span>
+                        <span class="total-reviews">(1 review)</span>
+                          <a href="/reviewform.html" class="addreview">Reviews</button></a>
                     </div>
                     <section class="card-price">
                         <div class="price">Ksh ${product.price}</div>
                     </section>
+                 
                     <button class="cartbtn">Add to Cart</button>
+                    
                 </div>
             `;
             
@@ -115,7 +119,7 @@
 
 
 function addToCart(event) {
-    alert('You clicked on Add to Cart');
+    
     const productCard = event.target.closest('.card');  
     const productId = productCard.dataset.productId;
     const productName = productCard.querySelector('.card-title').innerText;
